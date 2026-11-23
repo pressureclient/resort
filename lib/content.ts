@@ -113,7 +113,7 @@ export const activities = [
     name: 'Paddleboarding',
     blurb: 'Stand-up boards for flat-water days, with a lesson for first-timers.',
     detail: 'Hourly rental. Lesson included on first rent.',
-    image: u('1526188717906-ab4a2f949f78', 900),
+    image: u('1519046904884-53103b34b206', 900),
   },
 ];
 
