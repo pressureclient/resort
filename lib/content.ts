@@ -18,9 +18,9 @@ export const images = {
   rooms: S('cms/images/Y25oKde3lzgvPKUVsS7Qfiyd2HbQ4xHOB3eYIRu8.webp'),
   pool: S('cms/images/Dwiuh7V8DjWbtaNm0HNIZ0y1nug1NvHhz6XjqKTQ.webp'),
   contact: S('cms/images/Zu3Cj7mVh4gDDnxOBswI3JU8uNjylfpSDNlSOmZF.webp'),
-  dining: S('gallery/Gv2CTebRtYQcfTfvjFd8mxOdZusQVUNeZ2iYZ7P4.jpg'),
-  activities: S('gallery/SB3v2IqrPvQj7EJveACnKXToz065pbQImOmvk0Au.jpg'),
-  activities2: S('gallery/04rmHDPaP0h1bI6Uw4cPNhiGMwUPfmvSlyG3T9la.jpg'),
+  dining: S('gallery/Gv2CTebRtYQcfTfvjFd8mxOdZusQVUNeZ2iYZ7P4.webp'),
+  activities: S('gallery/SB3v2IqrPvQj7EJveACnKXToz065pbQImOmvk0Au.webp'),
+  activities2: S('gallery/04rmHDPaP0h1bI6Uw4cPNhiGMwUPfmvSlyG3T9la.webp'),
 };
 
 export type Room = {
@@ -53,60 +53,60 @@ export const rooms: Room[] = [
     slug: 'beach-view-room', type: 'Annex', name: 'Annex', price: 3220, capacity: 5, beds: '1 king bed size', size: 27, featured: true,
     summary: 'A cozy and comfortable annex room for couples or small groups.',
     description: 'A cozy and comfortable annex room for couples or small groups. Features 1 king bed in a well-maintained private space with easy access to the resort facilities.',
-    images: [RT('nnWxpbZFjrTATCeTX0OpATTYJnMBcXSBUIlAWl9H.jpg'), RT('bLLjp9AXWsozSeyWWIeDAEn4qIZcIixr12sO8i4Z.png')],
+    images: [RT('nnWxpbZFjrTATCeTX0OpATTYJnMBcXSBUIlAWl9H.webp'), RT('bLLjp9AXWsozSeyWWIeDAEn4qIZcIixr12sO8i4Z.webp')],
   },
   {
     slug: 'family-suite', type: 'Deluxe', name: 'Annex Deluxe', price: 5340, capacity: 4, beds: '2 king bed size', size: 24, featured: true,
     summary: 'A deluxe annex room with 2 king beds size for up to 4 guests.',
     description: 'A deluxe annex room with 2 king beds for up to 4 guests. Upgraded from the standard annex with better finishes and more comfortable amenities.',
-    images: [RT('OGVyD8Li2jl47ZdFHIwVUABHMnXSCZe05etXM97G.jpg'), RT('XZphdQ9KoPXxqC6Cw5wZdvn5EAlqOtAAercykvM0.png')],
+    images: [RT('OGVyD8Li2jl47ZdFHIwVUABHMnXSCZe05etXM97G.webp'), RT('XZphdQ9KoPXxqC6Cw5wZdvn5EAlqOtAAercykvM0.webp')],
   },
   {
     slug: 'beachfront-villa', type: 'Deluxe', name: 'Premier Deluxe', price: 6150, capacity: 5, beds: '2 king bed size and 1 single bed', size: 45,
     summary: 'A deluxe premier room for up to 5 guests featuring 2 king bed size and 1 single bed.',
     description: 'A deluxe premier room for up to 5 guests featuring 2 king beds and 1 single bed. Upgraded amenities and finishes make this one of the most comfortable rooms in the resort.',
-    images: [RT('tllFzUcoMApYNZu5hHWpsLc54JHg1n2v1Qoogaf6.jpg'), RT('A7tUNdMqUKP7rNlK9f5WAwqTUDhtucpaQvPptVs3.png')],
+    images: [RT('tllFzUcoMApYNZu5hHWpsLc54JHg1n2v1Qoogaf6.webp'), RT('A7tUNdMqUKP7rNlK9f5WAwqTUDhtucpaQvPptVs3.webp')],
   },
   {
     slug: 'presidential-suite', type: 'Dormitory', name: 'Annex Dorm', price: 7150, capacity: 6, beds: '3 king beds', size: 50,
     summary: 'A dormitory-style annex room with 3 king beds for up to 6 guests.',
     description: 'A dormitory-style annex room with 3 king beds for up to 6 guests. A good fit for families and barkada trips who want to stay together.',
-    images: [RT('nYpx2yMU91iidyi3tGySBm4BvRbI8PFRfYdVcta4.png'), RT('MZx5eyvQkzb9dal2Tu6jAtSIMvn4v5imVcwS0Sdj.jpg')],
+    images: [RT('nYpx2yMU91iidyi3tGySBm4BvRbI8PFRfYdVcta4.webp'), RT('MZx5eyvQkzb9dal2Tu6jAtSIMvn4v5imVcwS0Sdj.webp')],
   },
   {
     slug: 'annex-loft-room', type: 'Loft', name: 'Annex Loft Room', price: 8340, weekendPrice: 8349, capacity: 8, beds: '4 king beds', size: 65,
     summary: 'A two-level annex loft room that fits up to 7-8 guests comfortably.',
     description: 'A two-level annex loft room that fits up to 7-8 guests comfortably. Features 4 king beds spread across both levels. Great for barkada trips and family reunions.',
-    images: [RT('eSNP5ZDXStVaVlLwfUpAZWicjcFzhR58G0LDnZPe.jpg'), RT('9KRre2ZKUKaLdLCfgWhBO6qowOx17ueAIYZLqFz1.jpg'), RT('sNbMrrtBDm6M2ph5mgOfPgAJdOAaGnuMTsTJg5tb.jpg')],
+    images: [RT('eSNP5ZDXStVaVlLwfUpAZWicjcFzhR58G0LDnZPe.webp'), RT('9KRre2ZKUKaLdLCfgWhBO6qowOx17ueAIYZLqFz1.webp'), RT('sNbMrrtBDm6M2ph5mgOfPgAJdOAaGnuMTsTJg5tb.webp')],
   },
   {
     slug: 'premier-loft-room', type: 'Loft', name: 'Premier Loft Room', price: 10350, capacity: 12, beds: '6 king sized beds', size: 75,
     summary: 'A spacious loft room ideal for families or groups of up to 10-12.',
     description: 'A spacious loft room ideal for families or groups of up to 10-12. Features 6 king sized beds across two levels. Perfect for a fun group getaway by the beach.',
-    images: [RT('ijPf9Ja6U2kbnFe4ury2AJw6PeyPmfiQ7qanQvfh.jpg'), RT('z8fcji8wYd2OP3awWr6sZJU2kvwsMLtHmDHj68V0.jpg'), RT('VID0It2SpLIwcIYSJztz0vgJk0FqMnG1vOzRoM8W.jpg')],
+    images: [RT('ijPf9Ja6U2kbnFe4ury2AJw6PeyPmfiQ7qanQvfh.webp'), RT('z8fcji8wYd2OP3awWr6sZJU2kvwsMLtHmDHj68V0.webp'), RT('VID0It2SpLIwcIYSJztz0vgJk0FqMnG1vOzRoM8W.webp')],
   },
   {
     slug: 'dormitory-room', type: 'Dormitory', name: 'Dormitory Room', price: 12680, capacity: 20, beds: '8 king bed size', size: 100,
     summary: 'A large dormitory room for big groups, team outings and budget group travel.',
     description: 'A large dormitory room for big groups. Perfect for team outings, school trips or budget group travel.',
-    images: [RT('Jsfxk9Mlp2m9X7kUJqveWKzpDOtWZysu6J97aNKQ.jpg'), RT('5S2ZyAjCtvFaBr9rSGOth0SSkezHNcX6I0LZ0PLT.jpg'), RT('EQw7mRRscOKr3iyIsfJNODntWDsOgrinS8gyGMCZ.jpg'), RT('a5V3dmbhFUd7MWQPrC3HDcvnqtKwyYuLPHqRbJdJ.jpg'), RT('7GxUFkpFjqluzm3O5390sfbXIXJCkXihMrsPrGAg.jpg')],
+    images: [RT('Jsfxk9Mlp2m9X7kUJqveWKzpDOtWZysu6J97aNKQ.webp'), RT('5S2ZyAjCtvFaBr9rSGOth0SSkezHNcX6I0LZ0PLT.webp'), RT('EQw7mRRscOKr3iyIsfJNODntWDsOgrinS8gyGMCZ.webp'), RT('a5V3dmbhFUd7MWQPrC3HDcvnqtKwyYuLPHqRbJdJ.webp'), RT('7GxUFkpFjqluzm3O5390sfbXIXJCkXihMrsPrGAg.webp')],
   },
   {
     slug: 'la-luz-luxury-5br-private-villa', type: 'Villa', name: 'La Luz Luxury 5BR Private Villa', price: 15270, capacity: 25, beds: '5 bedrooms', size: 250,
     summary: 'An expansive 5-bedroom luxury villa ideal for large groups and special events.',
     description: 'An expansive 5-bedroom luxury villa ideal for large groups and special events. Features premium furnishings, multiple bedrooms, a full kitchen, and exclusive resort amenities.',
-    images: [RT('7R4K4CBM3VfaJ8pU7xUjGbpD8i1BrjIrKAdpm8wu.jpg'), RT('y9ryvkqPliS7NCpY4rrSreAnF6M3OmnwZVtJZANP.png'), RT('9qe5EzHMpqY85gDruiwVFJaUyq6h2zCfoOuwwHjR.jpg'), RT('WkhpByLPxyiZzUhzZ1PrJ1hTgxiyCBJHCFySnrLZ.jpg'), RT('O5IrHU5cFlsMsOSQhrnoTjbQpM4nCvVgFdA1a6IE.jpg')],
+    images: [RT('7R4K4CBM3VfaJ8pU7xUjGbpD8i1BrjIrKAdpm8wu.webp'), RT('y9ryvkqPliS7NCpY4rrSreAnF6M3OmnwZVtJZANP.webp'), RT('9qe5EzHMpqY85gDruiwVFJaUyq6h2zCfoOuwwHjR.webp'), RT('WkhpByLPxyiZzUhzZ1PrJ1hTgxiyCBJHCFySnrLZ.webp'), RT('O5IrHU5cFlsMsOSQhrnoTjbQpM4nCvVgFdA1a6IE.webp')],
   },
 ];
 
 export const activities = [
-  { id: 'jet-ski', name: 'Jet Ski', blurb: 'Race across the waves on our high-powered jet skis. Available for both beginners and experienced riders with full safety gear.', price: 800, duration: '2 hours', image: S('activities/7qV8P7A23OeSQR0tHabtud9RDLhQR2d1R7z06iej.png') },
-  { id: 'banana-boat', name: 'Banana Boat', blurb: 'Hold on tight for a thrilling banana boat ride along the coast. Perfect for groups wanting a fun, adrenaline-pumping experience.', price: 1500, duration: 'Full day', image: S('activities/bXPh9UqGhqIIEGA2gnGKirvcEJrUVAmNNH425sR1.png') },
-  { id: 'kayaking', name: 'Kayaking', blurb: 'Paddle along the coastline at your own pace. Single and tandem kayaks available. Explore coves and the marine sanctuary.', price: 400, duration: '1 hour', image: S('activities/AARKnw0Q4tAmdKtZsqvipmFb7BPlcHKm1BOIxYHk.png') },
-  { id: 'snorkeling', name: 'Snorkeling', blurb: 'Discover the rich marine life in the adjacent sanctuary. Equipment provided. Guided tours available for deeper areas.', price: 0, duration: 'Open hours', image: S('activities/F4BnK4aOOuCmCuFxcood55zUHF4tz3pYPPaUzmRo.png') },
-  { id: 'flying-fish', name: 'Flying Fish', blurb: 'Feel like you are flying above the sea. An exhilarating ride that lifts you just above the waves for a thrilling view of the coastline.', price: 1200, duration: '2 hours', image: S('activities/Han3YtssXGMU4GUZjlnojun4HCFgYaeC4ZWZvOz5.png') },
-  { id: 'beach-volleyball', name: 'Beach Volleyball', blurb: 'Challenge your group on our beachfront court. Balls and nets are set up daily, ready for pickup games.', price: 900, duration: '60-90 min', image: S('activities/VpUJigwsbgwyOfDLH9B7sLRxYxkBGO8rzN3UBGae.png'), pageOnly: true },
-  { id: 'bonfire-night', name: 'Bonfire Night', blurb: 'An evening around the fire on the beach. Ask the front desk for times and what is included.', price: 2500, duration: 'Half day', image: S('activities/cJRZtcV1DuCFzF8xnXCl7CE7K8pw2irzfVtxht0c.png'), pageOnly: true },
+  { id: 'jet-ski', name: 'Jet Ski', blurb: 'Race across the waves on our high-powered jet skis. Available for both beginners and experienced riders with full safety gear.', price: 800, duration: '2 hours', image: S('activities/7qV8P7A23OeSQR0tHabtud9RDLhQR2d1R7z06iej.webp') },
+  { id: 'banana-boat', name: 'Banana Boat', blurb: 'Hold on tight for a thrilling banana boat ride along the coast. Perfect for groups wanting a fun, adrenaline-pumping experience.', price: 1500, duration: 'Full day', image: S('activities/bXPh9UqGhqIIEGA2gnGKirvcEJrUVAmNNH425sR1.webp') },
+  { id: 'kayaking', name: 'Kayaking', blurb: 'Paddle along the coastline at your own pace. Single and tandem kayaks available. Explore coves and the marine sanctuary.', price: 400, duration: '1 hour', image: S('activities/AARKnw0Q4tAmdKtZsqvipmFb7BPlcHKm1BOIxYHk.webp') },
+  { id: 'snorkeling', name: 'Snorkeling', blurb: 'Discover the rich marine life in the adjacent sanctuary. Equipment provided. Guided tours available for deeper areas.', price: 0, duration: 'Open hours', image: S('activities/F4BnK4aOOuCmCuFxcood55zUHF4tz3pYPPaUzmRo.webp') },
+  { id: 'flying-fish', name: 'Flying Fish', blurb: 'Feel like you are flying above the sea. An exhilarating ride that lifts you just above the waves for a thrilling view of the coastline.', price: 1200, duration: '2 hours', image: S('activities/Han3YtssXGMU4GUZjlnojun4HCFgYaeC4ZWZvOz5.webp') },
+  { id: 'beach-volleyball', name: 'Beach Volleyball', blurb: 'Challenge your group on our beachfront court. Balls and nets are set up daily, ready for pickup games.', price: 900, duration: '60-90 min', image: S('activities/VpUJigwsbgwyOfDLH9B7sLRxYxkBGO8rzN3UBGae.webp'), pageOnly: true },
+  { id: 'bonfire-night', name: 'Bonfire Night', blurb: 'An evening around the fire on the beach. Ask the front desk for times and what is included.', price: 2500, duration: 'Half day', image: S('activities/cJRZtcV1DuCFzF8xnXCl7CE7K8pw2irzfVtxht0c.webp'), pageOnly: true },
 ];
 
 export const highlights = [
@@ -121,31 +121,31 @@ export const dining = [
     name: 'The Reef', kind: 'Filipino-International', hours: '6:30 AM – 10:30 PM', seats: 120,
     short: 'Fresh seafood, international dishes and local specialties with a view of the bay.',
     text: 'The Reef offers a delightful dining experience with a sweeping view of the beach, bay and surrounding hills. The menu features fresh seafood, international cuisine and local specialties. Casual attire. Lunch and dinner are served, and breakfast runs from 7:30 AM until 10 AM, with a breakfast buffet most days (check with The Reef staff or the front desk). Room service is available from the full Reef menu, and specialty dining can be arranged for groups.',
-    image: S('restaurants/p3kZCuko3kAjBI0TRyTCnlsJ6TNURpKSf0V0nBWZ.png'),
+    image: S('restaurants/p3kZCuko3kAjBI0TRyTCnlsJ6TNURpKSf0V0nBWZ.webp'),
   },
   {
     name: 'The Sandbar', kind: 'Filipino Seafood', hours: '7:30 AM – 10:00 PM', seats: 80,
     short: 'Beachside grill with your toes in the sand and live music on weekends.',
     text: 'Casual beachside dining with your toes in the sand. Fresh seafood grilled to perfection, tropical cocktails and sunset views. The heart of resort social life, with live music on weekends.',
-    image: S('restaurants/bYDJomwKE0x5tHSRdgMVxWU2vlXVRCJpx1YAfU97.png'),
+    image: S('restaurants/bYDJomwKE0x5tHSRdgMVxWU2vlXVRCJpx1YAfU97.webp'),
   },
   {
     name: 'Sunset Lounge & Bar', kind: 'Bar & Tapas', hours: '3:00 PM – 12:00 AM', seats: 50,
     short: 'Craft cocktails, premium spirits and light bites at sunset.',
     text: 'The perfect spot to unwind with craft cocktails, premium spirits and light bites, with wide views of the bay that are at their best at sunset.',
-    image: S('restaurants/QDWCoR7e2OYSRqGcuWNPGEb5JjrApAsh4FfPYCN6.png'),
+    image: S('restaurants/QDWCoR7e2OYSRqGcuWNPGEb5JjrApAsh4FfPYCN6.webp'),
   },
   {
     name: 'Camayan Mart', kind: 'Resort store', hours: '7:30 AM – 10:00 PM', seats: null,
     short: 'Snacks, drinks and holiday essentials, steps from the beach.',
     text: 'A fully stocked little store literally steps from the beach. Shop for food, drinks and everything you need or want during your stay.',
-    image: S('restaurants/yxnlVc5YjAhceJfPB2S2YqEn0BAbzl7cuedTYNLf.png'),
+    image: S('restaurants/yxnlVc5YjAhceJfPB2S2YqEn0BAbzl7cuedTYNLf.webp'),
   },
   {
     name: 'Pizzaro', kind: 'Pizza', hours: null, seats: null,
     short: 'Pizza to share by the pool or on the beach.',
     text: 'Pizza to share by the pool or on the beach.',
-    image: S('restaurants/A8VxFVArl68Gy5PbUJAjbug0pVAuDOl8ohIuvVJR.png'),
+    image: S('restaurants/A8VxFVArl68Gy5PbUJAjbug0pVAuDOl8ohIuvVJR.webp'),
   },
 ];
 
@@ -174,24 +174,24 @@ export const about = {
     { v: '4.9', k: 'Average rating' },
   ],
   photos: [
-    S('gallery/TAKVDdkmuaJ1mfqeaecA5G6lfqbHuQJFR1LrtDdW.png'),
-    S('gallery/MiHKsWVCm4h5eWWOh4K6z2wVSc8wSKK1k1ptcJ1y.png'),
-    S('gallery/nuTSQk3PIw37HVGIVrpNkwUwzSJPkzQdGA6Cm1E5.png'),
-    S('gallery/AwglCnd9aSe8U8S8JgUbbaZJLxGXbk5dvPvaQl0K.png'),
+    S('gallery/TAKVDdkmuaJ1mfqeaecA5G6lfqbHuQJFR1LrtDdW.webp'),
+    S('gallery/MiHKsWVCm4h5eWWOh4K6z2wVSc8wSKK1k1ptcJ1y.webp'),
+    S('gallery/nuTSQk3PIw37HVGIVrpNkwUwzSJPkzQdGA6Cm1E5.webp'),
+    S('gallery/AwglCnd9aSe8U8S8JgUbbaZJLxGXbk5dvPvaQl0K.webp'),
   ],
 };
 
 export const gallery = [
-  S('gallery/dOTj02AovCkZUIJhuUW91vUIlxtZiWI4bYQqawHm.png'),
-  S('gallery/3qPBYhAfx6GJRYryZdkYEBfpzS2IDRxAUPivCpFa.png'),
-  S('gallery/mnWiSByzqwhpr5McuQQ4sv4JxQ8c2Z7jlWKzsjo0.png'),
-  S('gallery/G4Rfep19rq9kbSgGx76EBtsZns7FnFqN72QJIE6T.png'),
-  S('gallery/1vc7vsLUCIdqKb2RdysJ92VrvQOmk7p5Tm4VBVUt.png'),
-  S('gallery/4dadAMJ4NSNVDp8bDSN5xMmiYeBMLWMmwat8MBwo.png'),
-  S('gallery/AwglCnd9aSe8U8S8JgUbbaZJLxGXbk5dvPvaQl0K.png'),
-  S('gallery/nuTSQk3PIw37HVGIVrpNkwUwzSJPkzQdGA6Cm1E5.png'),
-  S('gallery/MiHKsWVCm4h5eWWOh4K6z2wVSc8wSKK1k1ptcJ1y.png'),
-  S('gallery/TAKVDdkmuaJ1mfqeaecA5G6lfqbHuQJFR1LrtDdW.png'),
+  S('gallery/dOTj02AovCkZUIJhuUW91vUIlxtZiWI4bYQqawHm.webp'),
+  S('gallery/3qPBYhAfx6GJRYryZdkYEBfpzS2IDRxAUPivCpFa.webp'),
+  S('gallery/mnWiSByzqwhpr5McuQQ4sv4JxQ8c2Z7jlWKzsjo0.webp'),
+  S('gallery/G4Rfep19rq9kbSgGx76EBtsZns7FnFqN72QJIE6T.webp'),
+  S('gallery/1vc7vsLUCIdqKb2RdysJ92VrvQOmk7p5Tm4VBVUt.webp'),
+  S('gallery/4dadAMJ4NSNVDp8bDSN5xMmiYeBMLWMmwat8MBwo.webp'),
+  S('gallery/AwglCnd9aSe8U8S8JgUbbaZJLxGXbk5dvPvaQl0K.webp'),
+  S('gallery/nuTSQk3PIw37HVGIVrpNkwUwzSJPkzQdGA6Cm1E5.webp'),
+  S('gallery/MiHKsWVCm4h5eWWOh4K6z2wVSc8wSKK1k1ptcJ1y.webp'),
+  S('gallery/TAKVDdkmuaJ1mfqeaecA5G6lfqbHuQJFR1LrtDdW.webp'),
 ];
 
 export const arrival = [
