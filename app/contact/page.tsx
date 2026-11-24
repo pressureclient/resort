@@ -1,5 +1,6 @@
 import { site, mapEmbed, mapLink } from '@/lib/site';
 import { PageHead } from '@/components/Bits';
+import { images } from '@/lib/content';
 import { ContactForm } from '@/components/Forms';
 import { isConfigured } from '@/lib/supabase/server';
 import { SetupNotice } from '@/components/Bits';
@@ -9,8 +10,8 @@ export const metadata = { title: 'Contact' };
 export default function Contact() {
   return (
     <>
-      <PageHead title="Contact" lead="Questions about rooms, day passes or group stays. We reply within a day." />
-      <section className="section" style={{ paddingTop: 0 }}>
+      <PageHead photo={images.contact} title="Get In Touch" lead="Questions about rooms, day tours, events or activities? Our reservations team will reply within 24 hours." />
+      <section className="section" >
         <div className="wrap split" style={{ alignItems: 'stretch' }}>
           <div className="contact-card">
             {!isConfigured && <SetupNotice />}

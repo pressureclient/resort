@@ -1,4 +1,4 @@
--- Marisol Cove booking system
+-- La Luz Beach Resort booking system
 -- Run this whole file once in Supabase: SQL Editor > New query > paste > Run.
 
 -- ---------- Tables ----------
@@ -204,12 +204,18 @@ create policy "anyone can subscribe" on public.subscribers for insert with check
 drop policy if exists "admin reads subscribers" on public.subscribers;
 create policy "admin reads subscribers" on public.subscribers for select using (public.is_admin());
 
--- ---------- Sample rooms (edit freely in Table Editor) ----------
--- Slugs must match lib/content.ts so the marketing pages and booking line up.
+-- ---------- La Luz rooms (edit prices and units in Table Editor > rooms) ----------
+-- Slugs match the current laluzbeachandresort.com room URLs and lib/content.ts.
+-- units = how many of that room type exist. Set to 1 until the real counts are confirmed.
 
 insert into public.rooms (slug, name, summary, price_per_night, capacity, beds, size_m2, units) values
-  ('shoreline-room', 'Shoreline Room', 'Sea-facing room a few steps from the sand, with a private balcony.', 95000, 3, '1 king + 1 day bed', 35, 6),
-  ('garden-annex',   'Garden Annex',   'Ground-floor room set in the palm garden, a short walk to the beach.',  70000, 5, '2 queens + 1 single', 30, 8),
-  ('cove-suite',     'Cove Suite',     'Corner suite with a lounge, outdoor shower and the widest view of the bay.', 140000, 4, '1 king + sofa bed', 48, 4),
-  ('family-villa',   'Family Villa',   'Two-bedroom villa with a kitchenette and a shaded deck for long afternoons.', 180000, 6, '1 king + 2 queens', 72, 2)
+  ('deluxe-room',                     'Premier Room',                    'A comfortable and spacious premier room perfect for small groups.', 4160, 3, 'Double king bed size', 35, 1),
+  ('beach-view-room',                 'Annex',                           'A cozy and comfortable annex room for couples or small groups.', 3220, 5, '1 king bed size', 27, 1),
+  ('family-suite',                    'Annex Deluxe',                    'A deluxe annex room with 2 king beds size for up to 4 guests.', 5340, 4, '2 king bed size', 24, 1),
+  ('beachfront-villa',                'Premier Deluxe',                  'A deluxe premier room for up to 5 guests.', 6150, 5, '2 king bed size and 1 single bed', 45, 1),
+  ('presidential-suite',              'Annex Dorm',                      'A dormitory-style annex room with 3 king beds for up to 6 guests.', 7150, 6, '3 king beds', 50, 1),
+  ('annex-loft-room',                 'Annex Loft Room',                 'A two-level annex loft room that fits up to 7-8 guests comfortably.', 8340, 8, '4 king beds', 65, 1),
+  ('premier-loft-room',               'Premier Loft Room',               'A spacious loft room ideal for families or groups of up to 10-12.', 10350, 12, '6 king sized beds', 75, 1),
+  ('dormitory-room',                  'Dormitory Room',                  'A large dormitory room for big groups.', 12680, 20, '8 king bed size', 100, 1),
+  ('la-luz-luxury-5br-private-villa', 'La Luz Luxury 5BR Private Villa', 'An expansive 5-bedroom luxury villa ideal for large groups and special events.', 15270, 25, '5 bedrooms', 250, 1)
 on conflict (slug) do nothing;

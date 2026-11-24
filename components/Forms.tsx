@@ -32,9 +32,15 @@ export function ContactForm() {
         <div className="field"><label htmlFor="c-arr">Arrival</label><input id="c-arr" name="arrival" type="date" /></div>
         <div className="field"><label htmlFor="c-dep">Departure</label><input id="c-dep" name="departure" type="date" /></div>
       </div>
-      <div className="field"><label htmlFor="c-msg">Message</label><textarea id="c-msg" name="message" placeholder="Group size, day pass, special requests" /></div>
+      <div className="field">
+        <label htmlFor="c-subj">Subject</label>
+        <select id="c-subj" name="subject" defaultValue="Room Reservation">
+          {['Room Reservation', 'Day Tour', 'Events & Groups', 'Activities', 'Feedback', 'Other'].map((s) => <option key={s}>{s}</option>)}
+        </select>
+      </div>
+      <div className="field"><label htmlFor="c-msg">Message</label><textarea id="c-msg" name="message" placeholder="Group size, day tour, special requests" /></div>
       <Msg state={state} />
-      <Submit>Send enquiry</Submit>
+      <Submit>Send message</Submit>
     </form>
   );
 }
@@ -88,7 +94,7 @@ export function BookingForm(props: { roomId: number; checkIn: string; checkOut: 
       <div className="field"><label htmlFor="b-notes">Requests</label><textarea id="b-notes" name="notes" placeholder="Arrival time, celebrations, dietary needs" /></div>
       <Msg state={state} />
       <Submit>Confirm booking</Submit>
-      <p className="small muted" style={{ margin: 0 }}>You pay at the resort. We will confirm your booking shortly after you submit it.</p>
+      <p className="small muted" style={{ margin: 0 }}>Pay at the resort. Our team confirms your booking shortly after you submit it.</p>
     </form>
   );
 }

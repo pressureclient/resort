@@ -1,6 +1,5 @@
 import Link from 'next/link';
-import { images } from '@/lib/content';
-import { site } from '@/lib/site';
+import { about, images } from '@/lib/content';
 import { PageHead, Pic } from '@/components/Bits';
 import { Check } from '@/components/Icons';
 
@@ -9,32 +8,43 @@ export const metadata = { title: 'About' };
 export default function About() {
   return (
     <>
-      <PageHead photo={images.about} title="Our story" lead={`How a family beach house became ${site.fullName}.`} />
+      <PageHead photo={images.aboutPage} title="A Hidden Gem in Laiya" lead="Over 30 years of family heritage on the shores of Batangas." />
       <section className="section">
         <div className="wrap split">
           <div>
-            <span className="label">Where it started</span>
-            <h2 className="title">Built for slow weekends</h2>
-            <p className="lead">The cove was a family retreat long before it had a name. Weekends meant fresh fish on the grill, kids in the shallows and nobody checking the time.</p>
-            <p className="muted">When we opened the gates to guests, we kept it small on purpose. A handful of room types, a beach that never feels crowded and a team that treats every arrival like a returning friend.</p>
+            <span className="label">Our story</span>
+            <h2 className="title">Over 30 Years of Family Heritage</h2>
+            {about.story.map((p, i) => <p key={i} className={i === 0 ? 'lead' : 'muted'}>{p}</p>)}
           </div>
-          <Pic src={images.location} className="pic" label="The bay at sunset" />
+          <Pic src={images.about} className="pic" label="La Luz Beach Resort grounds" />
         </div>
       </section>
       <section className="section mist">
         <div className="wrap">
-          <span className="label">What we care about</span>
-          <h2 className="title">Three things we will not change</h2>
+          <span className="label">What we stand for</span>
+          <h2 className="title">Our Values</h2>
           <div className="grid-3" style={{ marginTop: 32 }}>
-            {[
-              ['A quiet beach', 'We cap guest numbers so there is always space on the sand.'],
-              ['Local food', 'Fish comes from boats in the bay and produce from nearby farms.'],
-              ['Honest prices', 'The rate you see online is the rate you pay, with breakfast for two included.'],
-            ].map(([t, d]) => (
-              <div className="hl" key={t}><div className="ic"><Check /></div><h3>{t}</h3><p>{d}</p></div>
+            {about.values.map((v) => (
+              <div className="hl" key={v.title}><div className="ic"><Check /></div><h3>{v.title}</h3><p>{v.text}</p></div>
             ))}
           </div>
-          <div style={{ marginTop: 40 }}><Link href="/book" className="btn btn-primary">Plan your stay</Link></div>
+        </div>
+      </section>
+      <section className="section">
+        <div className="wrap">
+          <div className="stat-row">
+            {about.stats.map((s) => <div key={s.k}><b>{s.v}</b><span>{s.k}</span></div>)}
+          </div>
+          <div className="photo-strip" style={{ marginTop: 32 }}>
+            {about.photos.map((src, i) => <Pic key={i} src={src} label={`La Luz photo ${i + 1}`} />)}
+          </div>
+          <div className="band" style={{ marginTop: 48 }}>
+            <div>
+              <h2>Experience La Luz for Yourself</h2>
+              <p>Book your stay and discover why guests keep coming back to Laiya&rsquo;s beachfront.</p>
+            </div>
+            <div className="ctas"><Link href="/book" className="btn btn-light">Book now</Link></div>
+          </div>
         </div>
       </section>
     </>

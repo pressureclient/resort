@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { site } from '@/lib/site';
-import { Logo } from './Icons';
 import { NewsletterForm } from './Forms';
 
 export default function Footer() {
@@ -9,11 +8,14 @@ export default function Footer() {
       <div className="wrap">
         <div className="cols">
           <div>
-            <Link href="/" className="logo"><Logo /> {site.name}</Link>
-            <p className="small">{site.tagline}. {site.address}.</p>
+            <Link href="/" className="logo">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={site.logo} alt={site.fullName} className="logo-img" />
+            </Link>
+            <p className="small">{site.footerLine}</p>
           </div>
           <div>
-            <h4>Explore</h4>
+            <h4>Quick links</h4>
             <ul>
               <li><Link href="/about">About</Link></li>
               <li><Link href="/rooms">Rooms</Link></li>
@@ -35,17 +37,14 @@ export default function Footer() {
             </ul>
           </div>
           <div>
-            <h4>Offers and news</h4>
-            <p className="small" style={{ margin: 0 }}>Seasonal rates and weekend events, about once a month.</p>
+            <h4>Stay in the loop</h4>
+            <p className="small" style={{ margin: 0 }}>Seasonal offers and resort news, a few times a year.</p>
             <NewsletterForm />
           </div>
         </div>
         <div className="bottom">
-          <span>© {new Date().getFullYear()} {site.fullName}. All rights reserved.</span>
-          <span style={{ display: 'flex', gap: 18 }}>
-            <a href={site.socials.instagram} target="_blank" rel="noreferrer">Instagram</a>
-            <a href={site.socials.facebook} target="_blank" rel="noreferrer">Facebook</a>
-          </span>
+          <span>© {new Date().getFullYear()} {site.fullName}. All Rights Reserved.</span>
+          <span><Link href="/faq">FAQ</Link> · <Link href="/contact">Contact</Link></span>
         </div>
       </div>
     </footer>

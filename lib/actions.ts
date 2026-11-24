@@ -114,10 +114,10 @@ export async function sendEnquiry(_: FormState, fd: FormData): Promise<FormState
     phone: str(fd, 'phone') || null,
     arrival: isIsoDate(arrival) ? arrival : null,
     departure: isIsoDate(departure) ? departure : null,
-    message: str(fd, 'message').slice(0, 2000) || null,
+    message: [str(fd, 'subject') && `[${str(fd, 'subject')}]`, str(fd, 'message')].filter(Boolean).join(' ').slice(0, 2000) || null,
   });
   if (error) return { error: 'Could not send right now. Please email us instead.' };
-  return { ok: 'Thanks. We will reply within a day.' };
+  return { ok: 'Thanks. Our reservations team will reply within 24 hours.' };
 }
 
 export async function subscribe(_: FormState, fd: FormData): Promise<FormState> {

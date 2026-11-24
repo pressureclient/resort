@@ -1,191 +1,214 @@
-// Marketing content. Room slugs, prices and capacity mirror supabase/schema.sql.
-// The booking system always uses the database as the source of truth for price and availability.
+// La Luz Beach Resort content, taken from laluzbeachandresort.com.
+// Room slugs, prices and capacity mirror the rooms table in Supabase (supabase/schema.sql).
+// The booking system always uses the database for price and availability.
 
-const u = (id: string, w = 1600) =>
-  `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=75`;
+// Photos are served from La Luz's current site. Before that site is switched off,
+// copy them into /public and point these paths there (see README).
+const S = (path: string) => `https://laluzbeachandresort.com/storage/${path}`;
+const RT = (file: string) => S(`room-types/gallery/${file}`);
 
 export const images = {
-  hero: u('1507525428034-b723cf961d3e', 2200),
-  about: u('1540541338287-41700207dee6'),
-  pool: u('1566073771259-6a8506099945'),
-  location: u('1519046904884-53103b34b206'),
+  heroSlides: [
+    S('cms/images/gbPI1nRNbkUSnDYoECHGRO6nHVY0Jj4SBBaQGMjb.webp'),
+    S('cms/images/4NvKxPu3Jj7eG7Rb0HJKOIE3xgStafVxwyxu96sx.webp'),
+    S('cms/images/QmBFMo7yu51AsjFBIovwvucLfq7AjuUkb9uQ98jG.webp'),
+    S('cms/images/5GdvFLwxh7jeINpnXZEt7Bcvqvor0VZftFcWiOHo.webp'),
+  ],
+  about: S('cms/images/S5X8JdSJrLiPFoqpHxcvC7ND5I0EQXNxROGqqsv8.webp'),
+  aboutPage: S('cms/images/kGhO8MoL46ox0r0pbuNGOY3X4Ww962L1IusI7VAX.webp'),
+  rooms: S('cms/images/Y25oKde3lzgvPKUVsS7Qfiyd2HbQ4xHOB3eYIRu8.webp'),
+  pool: S('cms/images/Dwiuh7V8DjWbtaNm0HNIZ0y1nug1NvHhz6XjqKTQ.webp'),
+  contact: S('cms/images/Zu3Cj7mVh4gDDnxOBswI3JU8uNjylfpSDNlSOmZF.webp'),
+  dining: S('gallery/Gv2CTebRtYQcfTfvjFd8mxOdZusQVUNeZ2iYZ7P4.jpg'),
+  activities: S('gallery/SB3v2IqrPvQj7EJveACnKXToz065pbQImOmvk0Au.jpg'),
+  activities2: S('gallery/04rmHDPaP0h1bI6Uw4cPNhiGMwUPfmvSlyG3T9la.jpg'),
 };
 
 export type Room = {
   slug: string;
+  type: string;
   name: string;
   price: number;
+  weekendPrice?: number;
   capacity: number;
   beds: string;
   size: number;
   summary: string;
   description: string;
-  amenities: string[];
+  featured?: boolean;
   images: string[];
 };
 
+// Kept to amenities every room clearly has. The old site listed a private pool,
+// jacuzzi and pets for every room, which the FAQ contradicts.
+export const roomAmenities = ['Free Wi-Fi', 'Air conditioning', 'Private bathroom', 'Flat-screen TV', 'Beach access', 'Daily housekeeping'];
+
 export const rooms: Room[] = [
   {
-    slug: 'shoreline-room',
-    name: 'Shoreline Room',
-    price: 95000,
-    capacity: 3,
-    beds: '1 king + 1 day bed',
-    size: 35,
-    summary: 'Sea-facing room a few steps from the sand, with a private balcony.',
-    description:
-      'Wake up to the sound of the water. The Shoreline Room sits on the first row facing the bay, with a balcony wide enough for two chairs and morning coffee. Linen bedding, a rain shower and blackout curtains for slow mornings.',
-    amenities: ['Sea view balcony', 'Air conditioning', 'Rain shower', 'Smart TV', 'Mini fridge', 'Free Wi-Fi'],
-    images: [u('1582719478250-c89cae4dc85b'), u('1590490360182-c33d57733427'), u('1507525428034-b723cf961d3e')],
+    slug: 'deluxe-room', type: 'Premier', name: 'Premier Room', price: 4160, capacity: 3, beds: 'Double king bed size', size: 35, featured: true,
+    summary: 'A comfortable and spacious premier room perfect for small groups.',
+    description: 'A comfortable and spacious premier room perfect for small groups. Features a double king bed size with modern amenities and a relaxing beach resort atmosphere.',
+    images: [RT('LBqCfZC1FQcTBEfz5Zy5fsWbpYOOsVVOlXznavDW.webp'), RT('iLhkYzX249Sb1g9V6fBUm3JDYeebMrNkcPG7i2w9.webp')],
   },
   {
-    slug: 'garden-annex',
-    name: 'Garden Annex',
-    price: 70000,
-    capacity: 5,
-    beds: '2 queens + 1 single',
-    size: 30,
-    summary: 'Ground-floor room set in the palm garden, a short walk to the beach.',
-    description:
-      'Built for groups and families who spend the day outside. The Garden Annex opens straight onto the palm garden, two minutes from the beach and the pool, with room for five and a shaded porch for drying off.',
-    amenities: ['Garden porch', 'Air conditioning', 'Sleeps 5', 'Hot shower', 'Free Wi-Fi', 'Daily housekeeping'],
-    images: [u('1611892440504-42a792e24d32'), u('1631049307264-da0ec9d70304'), u('1540541338287-41700207dee6')],
+    slug: 'beach-view-room', type: 'Annex', name: 'Annex', price: 3220, capacity: 5, beds: '1 king bed size', size: 27, featured: true,
+    summary: 'A cozy and comfortable annex room for couples or small groups.',
+    description: 'A cozy and comfortable annex room for couples or small groups. Features 1 king bed in a well-maintained private space with easy access to the resort facilities.',
+    images: [RT('nnWxpbZFjrTATCeTX0OpATTYJnMBcXSBUIlAWl9H.jpg'), RT('bLLjp9AXWsozSeyWWIeDAEn4qIZcIixr12sO8i4Z.png')],
   },
   {
-    slug: 'cove-suite',
-    name: 'Cove Suite',
-    price: 140000,
-    capacity: 4,
-    beds: '1 king + sofa bed',
-    size: 48,
-    summary: 'Corner suite with a lounge, outdoor shower and the widest view of the bay.',
-    description:
-      'Our corner suite looks across the whole bay. A separate lounge, an outdoor stone shower and a deep tub make it the room people book for anniversaries and long weekends.',
-    amenities: ['Panoramic bay view', 'Separate lounge', 'Outdoor shower', 'Bathtub', 'Nespresso machine', 'Free Wi-Fi'],
-    images: [u('1578683010236-d716f9a3f461'), u('1590490360182-c33d57733427'), u('1520250497591-112f2f40a3f4')],
+    slug: 'family-suite', type: 'Deluxe', name: 'Annex Deluxe', price: 5340, capacity: 4, beds: '2 king bed size', size: 24, featured: true,
+    summary: 'A deluxe annex room with 2 king beds size for up to 4 guests.',
+    description: 'A deluxe annex room with 2 king beds for up to 4 guests. Upgraded from the standard annex with better finishes and more comfortable amenities.',
+    images: [RT('OGVyD8Li2jl47ZdFHIwVUABHMnXSCZe05etXM97G.jpg'), RT('XZphdQ9KoPXxqC6Cw5wZdvn5EAlqOtAAercykvM0.png')],
   },
   {
-    slug: 'family-villa',
-    name: 'Family Villa',
-    price: 180000,
-    capacity: 6,
-    beds: '1 king + 2 queens',
-    size: 72,
-    summary: 'Two-bedroom villa with a kitchenette and a shaded deck for long afternoons.',
-    description:
-      'Two bedrooms, a kitchenette and a private deck under the palms. The villa gives a family or a group of friends their own corner of the resort while staying close to the beach, pool and restaurants.',
-    amenities: ['Two bedrooms', 'Kitchenette', 'Private deck', 'Sleeps 6', 'Air conditioning', 'Free Wi-Fi'],
-    images: [u('1571896349842-33c89424de2d'), u('1611892440504-42a792e24d32'), u('1566073771259-6a8506099945')],
+    slug: 'beachfront-villa', type: 'Deluxe', name: 'Premier Deluxe', price: 6150, capacity: 5, beds: '2 king bed size and 1 single bed', size: 45,
+    summary: 'A deluxe premier room for up to 5 guests featuring 2 king bed size and 1 single bed.',
+    description: 'A deluxe premier room for up to 5 guests featuring 2 king beds and 1 single bed. Upgraded amenities and finishes make this one of the most comfortable rooms in the resort.',
+    images: [RT('tllFzUcoMApYNZu5hHWpsLc54JHg1n2v1Qoogaf6.jpg'), RT('A7tUNdMqUKP7rNlK9f5WAwqTUDhtucpaQvPptVs3.png')],
+  },
+  {
+    slug: 'presidential-suite', type: 'Dormitory', name: 'Annex Dorm', price: 7150, capacity: 6, beds: '3 king beds', size: 50,
+    summary: 'A dormitory-style annex room with 3 king beds for up to 6 guests.',
+    description: 'A dormitory-style annex room with 3 king beds for up to 6 guests. A good fit for families and barkada trips who want to stay together.',
+    images: [RT('nYpx2yMU91iidyi3tGySBm4BvRbI8PFRfYdVcta4.png'), RT('MZx5eyvQkzb9dal2Tu6jAtSIMvn4v5imVcwS0Sdj.jpg')],
+  },
+  {
+    slug: 'annex-loft-room', type: 'Loft', name: 'Annex Loft Room', price: 8340, weekendPrice: 8349, capacity: 8, beds: '4 king beds', size: 65,
+    summary: 'A two-level annex loft room that fits up to 7-8 guests comfortably.',
+    description: 'A two-level annex loft room that fits up to 7-8 guests comfortably. Features 4 king beds spread across both levels. Great for barkada trips and family reunions.',
+    images: [RT('eSNP5ZDXStVaVlLwfUpAZWicjcFzhR58G0LDnZPe.jpg'), RT('9KRre2ZKUKaLdLCfgWhBO6qowOx17ueAIYZLqFz1.jpg'), RT('sNbMrrtBDm6M2ph5mgOfPgAJdOAaGnuMTsTJg5tb.jpg')],
+  },
+  {
+    slug: 'premier-loft-room', type: 'Loft', name: 'Premier Loft Room', price: 10350, capacity: 12, beds: '6 king sized beds', size: 75,
+    summary: 'A spacious loft room ideal for families or groups of up to 10-12.',
+    description: 'A spacious loft room ideal for families or groups of up to 10-12. Features 6 king sized beds across two levels. Perfect for a fun group getaway by the beach.',
+    images: [RT('ijPf9Ja6U2kbnFe4ury2AJw6PeyPmfiQ7qanQvfh.jpg'), RT('z8fcji8wYd2OP3awWr6sZJU2kvwsMLtHmDHj68V0.jpg'), RT('VID0It2SpLIwcIYSJztz0vgJk0FqMnG1vOzRoM8W.jpg')],
+  },
+  {
+    slug: 'dormitory-room', type: 'Dormitory', name: 'Dormitory Room', price: 12680, capacity: 20, beds: '8 king bed size', size: 100,
+    summary: 'A large dormitory room for big groups, team outings and budget group travel.',
+    description: 'A large dormitory room for big groups. Perfect for team outings, school trips or budget group travel.',
+    images: [RT('Jsfxk9Mlp2m9X7kUJqveWKzpDOtWZysu6J97aNKQ.jpg'), RT('5S2ZyAjCtvFaBr9rSGOth0SSkezHNcX6I0LZ0PLT.jpg'), RT('EQw7mRRscOKr3iyIsfJNODntWDsOgrinS8gyGMCZ.jpg'), RT('a5V3dmbhFUd7MWQPrC3HDcvnqtKwyYuLPHqRbJdJ.jpg'), RT('7GxUFkpFjqluzm3O5390sfbXIXJCkXihMrsPrGAg.jpg')],
+  },
+  {
+    slug: 'la-luz-luxury-5br-private-villa', type: 'Villa', name: 'La Luz Luxury 5BR Private Villa', price: 15270, capacity: 25, beds: '5 bedrooms', size: 250,
+    summary: 'An expansive 5-bedroom luxury villa ideal for large groups and special events.',
+    description: 'An expansive 5-bedroom luxury villa ideal for large groups and special events. Features premium furnishings, multiple bedrooms, a full kitchen, and exclusive resort amenities.',
+    images: [RT('7R4K4CBM3VfaJ8pU7xUjGbpD8i1BrjIrKAdpm8wu.jpg'), RT('y9ryvkqPliS7NCpY4rrSreAnF6M3OmnwZVtJZANP.png'), RT('9qe5EzHMpqY85gDruiwVFJaUyq6h2zCfoOuwwHjR.jpg'), RT('WkhpByLPxyiZzUhzZ1PrJ1hTgxiyCBJHCFySnrLZ.jpg'), RT('O5IrHU5cFlsMsOSQhrnoTjbQpM4nCvVgFdA1a6IE.jpg')],
   },
 ];
 
 export const activities = [
-  {
-    id: 'jet-ski',
-    name: 'Jet ski',
-    blurb: 'Thirty minutes across the open bay with a short safety briefing first.',
-    detail: 'From 18 years. Life jackets provided. Weather permitting.',
-    image: u('1626447857058-2ba6a8868cb5', 900),
-  },
-  {
-    id: 'banana-boat',
-    name: 'Banana boat',
-    blurb: 'The group favourite. Up to six riders towed along the shoreline.',
-    detail: 'From 8 years with an adult. About 15 minutes per ride.',
-    image: u('1530053969600-caed2596d242', 900),
-  },
-  {
-    id: 'kayaking',
-    name: 'Kayaking',
-    blurb: 'Single and double kayaks to paddle out to the rocks at the edge of the cove.',
-    detail: 'Hourly rental. Calm mornings are best.',
-    image: u('1472745942893-4b9f730c7668', 900),
-  },
-  {
-    id: 'snorkelling',
-    name: 'Snorkelling',
-    blurb: 'Clear shallow water by the reef with masks, fins and a guide.',
-    detail: 'Guided sessions at 9 AM and 3 PM.',
-    image: u('1544551763-46a013bb70d5', 900),
-  },
-  {
-    id: 'paddleboarding',
-    name: 'Paddleboarding',
-    blurb: 'Stand-up boards for flat-water days, with a lesson for first-timers.',
-    detail: 'Hourly rental. Lesson included on first rent.',
-    image: u('1519046904884-53103b34b206', 900),
-  },
+  { id: 'jet-ski', name: 'Jet Ski', blurb: 'Race across the waves on our high-powered jet skis. Available for both beginners and experienced riders with full safety gear.', price: 800, duration: '2 hours', image: S('activities/7qV8P7A23OeSQR0tHabtud9RDLhQR2d1R7z06iej.png') },
+  { id: 'banana-boat', name: 'Banana Boat', blurb: 'Hold on tight for a thrilling banana boat ride along the coast. Perfect for groups wanting a fun, adrenaline-pumping experience.', price: 1500, duration: 'Full day', image: S('activities/bXPh9UqGhqIIEGA2gnGKirvcEJrUVAmNNH425sR1.png') },
+  { id: 'kayaking', name: 'Kayaking', blurb: 'Paddle along the coastline at your own pace. Single and tandem kayaks available. Explore coves and the marine sanctuary.', price: 400, duration: '1 hour', image: S('activities/AARKnw0Q4tAmdKtZsqvipmFb7BPlcHKm1BOIxYHk.png') },
+  { id: 'snorkeling', name: 'Snorkeling', blurb: 'Discover the rich marine life in the adjacent sanctuary. Equipment provided. Guided tours available for deeper areas.', price: 0, duration: 'Open hours', image: S('activities/F4BnK4aOOuCmCuFxcood55zUHF4tz3pYPPaUzmRo.png') },
+  { id: 'flying-fish', name: 'Flying Fish', blurb: 'Feel like you are flying above the sea. An exhilarating ride that lifts you just above the waves for a thrilling view of the coastline.', price: 1200, duration: '2 hours', image: S('activities/Han3YtssXGMU4GUZjlnojun4HCFgYaeC4ZWZvOz5.png') },
+  { id: 'beach-volleyball', name: 'Beach Volleyball', blurb: 'Challenge your group on our beachfront court. Balls and nets are set up daily, ready for pickup games.', price: 900, duration: '60-90 min', image: S('activities/VpUJigwsbgwyOfDLH9B7sLRxYxkBGO8rzN3UBGae.png'), pageOnly: true },
+  { id: 'bonfire-night', name: 'Bonfire Night', blurb: 'An evening around the fire on the beach. Ask the front desk for times and what is included.', price: 2500, duration: 'Half day', image: S('activities/cJRZtcV1DuCFzF8xnXCl7CE7K8pw2irzfVtxht0c.png'), pageOnly: true },
 ];
 
 export const highlights = [
-  { icon: 'wifi', title: 'Free Wi-Fi', text: 'Fast connection in every room and across the beach bar.' },
-  { icon: 'beach', title: 'Private beach', text: 'A quiet stretch of sand kept for resort guests.' },
-  { icon: 'wave', title: 'Water activities', text: 'Jet ski, kayaks, snorkelling and more from our own jetty.' },
-  { icon: 'sun', title: 'Day tour', text: 'Not staying over? Book a day pass with pool and beach access.' },
+  { icon: 'wifi', title: 'Free Wi-Fi', text: 'Stay connected across the resort.' },
+  { icon: 'beach', title: 'Private Beach', text: 'Calm, clear water right in front of the resort.' },
+  { icon: 'wave', title: 'Water Activities', text: 'Snorkeling, kayaking, jet ski and more.' },
+  { icon: 'sun', title: 'Day Tour', text: 'Spend the day with us, no overnight needed.' },
 ] as const;
 
 export const dining = [
-  { name: 'Driftwood Grill', kind: 'Restaurant', text: 'Grilled catch of the day, suya platters and slow-cooked stews.', hours: '7 AM to 10 PM', image: u('1414235077428-338989a2e8c0', 900) },
-  { name: 'The Tide Bar', kind: 'Beach bar', text: 'Cocktails, cold drinks and small plates with your feet in the sand.', hours: '11 AM to midnight', image: u('1514933651103-005eec06c04b', 900) },
-  { name: 'Lantern Deck', kind: 'Sunset lounge', text: 'The best seat for sunset, with live music on weekends.', hours: '4 PM to 11 PM', image: u('1517248135467-4c7edcad34c4', 900) },
-  { name: 'Ember Pizza', kind: 'Wood-fired pizza', text: 'Wood-fired pizzas to share by the pool or take to your room.', hours: '12 PM to 10 PM', image: u('1565299624946-b28f40a0ae38', 900) },
-  { name: 'Cove Pantry', kind: 'Mini mart', text: 'Snacks, sunscreen, drinks and the things you forgot to pack.', hours: '7 AM to 9 PM', image: u('1559339352-11d035aa65de', 900) },
-];
-
-export const menu = [
   {
-    section: 'Breakfast',
-    items: [
-      { name: 'Cove breakfast', desc: 'Eggs your way, plantain, toast, fruit and coffee', price: 9500 },
-      { name: 'Yam and egg sauce', desc: 'Boiled yam, tomato egg sauce, fresh pepper', price: 7000 },
-      { name: 'Pancake stack', desc: 'Honey, banana and toasted coconut', price: 6500 },
-    ],
+    name: 'The Reef', kind: 'Filipino-International', hours: '6:30 AM – 10:30 PM', seats: 120,
+    short: 'Fresh seafood, international dishes and local specialties with a view of the bay.',
+    text: 'The Reef offers a delightful dining experience with a sweeping view of the beach, bay and surrounding hills. The menu features fresh seafood, international cuisine and local specialties. Casual attire. Lunch and dinner are served, and breakfast runs from 7:30 AM until 10 AM, with a breakfast buffet most days (check with The Reef staff or the front desk). Room service is available from the full Reef menu, and specialty dining can be arranged for groups.',
+    image: S('restaurants/p3kZCuko3kAjBI0TRyTCnlsJ6TNURpKSf0V0nBWZ.png'),
   },
   {
-    section: 'From the grill',
-    items: [
-      { name: 'Catch of the day', desc: 'Whole grilled fish, chips or fried yam, pepper sauce', price: 18000 },
-      { name: 'Suya platter', desc: 'Beef and chicken suya, onions, tomato, spice', price: 12500 },
-      { name: 'Grilled prawns', desc: 'Garlic butter, lime, jollof rice', price: 21000 },
-    ],
+    name: 'The Sandbar', kind: 'Filipino Seafood', hours: '7:30 AM – 10:00 PM', seats: 80,
+    short: 'Beachside grill with your toes in the sand and live music on weekends.',
+    text: 'Casual beachside dining with your toes in the sand. Fresh seafood grilled to perfection, tropical cocktails and sunset views. The heart of resort social life, with live music on weekends.',
+    image: S('restaurants/bYDJomwKE0x5tHSRdgMVxWU2vlXVRCJpx1YAfU97.png'),
   },
   {
-    section: 'Drinks',
-    items: [
-      { name: 'Chapman', desc: 'The classic, built tall over ice', price: 4000 },
-      { name: 'Fresh coconut', desc: 'Opened at the bar', price: 3000 },
-      { name: 'House cocktail', desc: 'Ask the bar for today’s mix', price: 6500 },
-    ],
+    name: 'Sunset Lounge & Bar', kind: 'Bar & Tapas', hours: '3:00 PM – 12:00 AM', seats: 50,
+    short: 'Craft cocktails, premium spirits and light bites at sunset.',
+    text: 'The perfect spot to unwind with craft cocktails, premium spirits and light bites, with wide views of the bay that are at their best at sunset.',
+    image: S('restaurants/QDWCoR7e2OYSRqGcuWNPGEb5JjrApAsh4FfPYCN6.png'),
+  },
+  {
+    name: 'Camayan Mart', kind: 'Resort store', hours: '7:30 AM – 10:00 PM', seats: null,
+    short: 'Snacks, drinks and holiday essentials, steps from the beach.',
+    text: 'A fully stocked little store literally steps from the beach. Shop for food, drinks and everything you need or want during your stay.',
+    image: S('restaurants/yxnlVc5YjAhceJfPB2S2YqEn0BAbzl7cuedTYNLf.png'),
+  },
+  {
+    name: 'Pizzaro', kind: 'Pizza', hours: null, seats: null,
+    short: 'Pizza to share by the pool or on the beach.',
+    text: 'Pizza to share by the pool or on the beach.',
+    image: S('restaurants/A8VxFVArl68Gy5PbUJAjbug0pVAuDOl8ohIuvVJR.png'),
   },
 ];
 
-// Sample reviews for the template. Replace with real guest reviews before launch.
+// Testimonials as they appear on the current La Luz site.
 export const reviews = [
-  { name: 'Adaeze O.', room: 'Cove Suite', date: 'Sample review', text: 'We came for two nights and stayed four. The suite view in the morning is worth the trip by itself, and the staff remembered our names by day two.' },
-  { name: 'Tunde B.', room: 'Garden Annex', date: 'Sample review', text: 'Perfect for our group of five. Clean rooms, the pool was never crowded and the grilled fish at Driftwood was the best we had all year.' },
-  { name: 'Grace M.', room: 'Shoreline Room', date: 'Sample review', text: 'Booking online took two minutes and check-in was quick. Quiet beach, good Wi-Fi and the sunset lounge is a must.' },
+  { name: 'Doe', room: 'Annex Deluxe', date: 'Jun 2026', text: 'A perfect getaway spot! Very serene, secure, and well-organized. I loved the pool and the overall atmosphere.' },
+  { name: 'Mary', room: 'Premier Room', date: 'Jun 2026', text: 'Absolutely amazing experience! The environment is so clean and peaceful. The staff were very welcoming and professional. I enjoyed every moment and will definitely visit again.' },
+  { name: 'Jessica', room: 'Premier Deluxe', date: 'Jun 2026', text: 'La Luz Resort is pure luxury! The beachfront view is breathtaking, and the rooms are elegant and spotless. Truly a world-class experience.' },
 ];
+
+export const about = {
+  story: [
+    'La Luz Beach Resort sits on a property that has been privately owned for over 30 years. It was recently opened to the public after decades as a hideaway for a family of 13 children, hence the many rooms and a large pavilion.',
+    'Nestled along the shores of Laiya, San Juan, Batangas, the resort has grown into one of the province’s most trusted beachfront destinations. What began as a modest family compound now offers genuine coastal hospitality to guests from all over the Philippines.',
+    'We focus on maintaining the natural environment: the towering trees, the white coral sand, the rocky cove on one side. No gimmicks, no overcrowding. Just a well-kept resort that delivers on its promise of a peaceful seaside retreat.',
+  ],
+  values: [
+    { title: 'Natural Environment', text: 'We preserve the lush greenery and existing trees that have grown on this property for decades. The resort lives within nature, not over it.' },
+    { title: 'Peaceful Experience', text: 'No loud music past 10 PM. No overcrowding. We limit guest capacity so everyone gets the space and silence they came for.' },
+    { title: 'Personalized Hospitality', text: 'Our staff knows returning guests by name. From arranging birthday surprises to accommodating dietary needs, every detail matters.' },
+  ],
+  stats: [
+    { v: '30+', k: 'Years of family heritage' },
+    { v: '50K+', k: 'Happy guests' },
+    { v: '22', k: 'Rooms & villas' },
+    { v: '4.9', k: 'Average rating' },
+  ],
+  photos: [
+    S('gallery/TAKVDdkmuaJ1mfqeaecA5G6lfqbHuQJFR1LrtDdW.png'),
+    S('gallery/MiHKsWVCm4h5eWWOh4K6z2wVSc8wSKK1k1ptcJ1y.png'),
+    S('gallery/nuTSQk3PIw37HVGIVrpNkwUwzSJPkzQdGA6Cm1E5.png'),
+    S('gallery/AwglCnd9aSe8U8S8JgUbbaZJLxGXbk5dvPvaQl0K.png'),
+  ],
+};
 
 export const gallery = [
-  u('1507525428034-b723cf961d3e', 1000),
-  u('1520250497591-112f2f40a3f4', 1000),
-  u('1582719478250-c89cae4dc85b', 1000),
-  u('1519046904884-53103b34b206', 1000),
-  u('1566073771259-6a8506099945', 1000),
-  u('1414235077428-338989a2e8c0', 1000),
-  u('1544551763-46a013bb70d5', 1000),
-  u('1578683010236-d716f9a3f461', 1000),
-  u('1514933651103-005eec06c04b', 1000),
-  u('1473116763249-2faaef81ccda', 1000),
-  u('1571896349842-33c89424de2d', 1000),
-  u('1505228395891-9a51e7e86bf6', 1000),
+  S('gallery/dOTj02AovCkZUIJhuUW91vUIlxtZiWI4bYQqawHm.png'),
+  S('gallery/3qPBYhAfx6GJRYryZdkYEBfpzS2IDRxAUPivCpFa.png'),
+  S('gallery/mnWiSByzqwhpr5McuQQ4sv4JxQ8c2Z7jlWKzsjo0.png'),
+  S('gallery/G4Rfep19rq9kbSgGx76EBtsZns7FnFqN72QJIE6T.png'),
+  S('gallery/1vc7vsLUCIdqKb2RdysJ92VrvQOmk7p5Tm4VBVUt.png'),
+  S('gallery/4dadAMJ4NSNVDp8bDSN5xMmiYeBMLWMmwat8MBwo.png'),
+  S('gallery/AwglCnd9aSe8U8S8JgUbbaZJLxGXbk5dvPvaQl0K.png'),
+  S('gallery/nuTSQk3PIw37HVGIVrpNkwUwzSJPkzQdGA6Cm1E5.png'),
+  S('gallery/MiHKsWVCm4h5eWWOh4K6z2wVSc8wSKK1k1ptcJ1y.png'),
+  S('gallery/TAKVDdkmuaJ1mfqeaecA5G6lfqbHuQJFR1LrtDdW.png'),
+];
+
+export const arrival = [
+  'Check-in time is 2:00 PM, check-out time is 12:00 PM.',
+  'A valid government-issued ID is required upon registration.',
+  'Please present your booking number at the front desk.',
+  'Outside food and drinks may be subject to a corkage fee.',
 ];
 
 export const faqs = [
-  { q: 'What time is check-in and check-out?', a: 'Check-in is from 2:00 PM and check-out is by 12:00 PM. Early check-in and late check-out depend on availability, so ask the front desk.' },
-  { q: 'What do I need at check-in?', a: 'A valid government-issued ID for the person who made the booking, plus your booking reference.' },
-  { q: 'Is my booking confirmed right away?', a: 'Online bookings start as pending. Our team confirms them, usually within a few hours, and you can see the status under My bookings.' },
-  { q: 'Can I cancel?', a: 'Yes. You can cancel any pending or confirmed booking from My bookings up to the day before arrival.' },
-  { q: 'Can I bring my own food and drinks?', a: 'Outside food and drinks may carry a corkage fee. Please check with the front desk before your stay.' },
-  { q: 'Do you offer day passes?', a: 'Yes. A day pass gives you beach and pool access from 8 AM to 6 PM. Send an enquiry with your date and group size.' },
+  { group: 'Booking', q: 'What time is check-in and check-out?', a: 'Standard check-in is at 2:00 PM and check-out is at 12:00 PM noon. Early check-in or late check-out may be arranged subject to availability and may incur additional charges. Please contact us in advance.' },
+  { group: 'Booking', q: 'What is your cancellation policy?', a: 'Cancellations made 7 or more days before check-in receive a full refund. Cancellations 3-6 days before check-in forfeit 50% of the total. Cancellations within 72 hours or no-shows forfeit the full amount. Peak season dates have a 14-day cancellation policy.' },
+  { group: 'Booking', q: 'How do I make a group or event booking?', a: 'For group bookings of 5 rooms or more, corporate events, weddings or private functions, please email support@laluzbeachandresort.com or call +63 (934) 717 4970. We offer tailored packages and special group rates.' },
+  { group: 'Services', q: 'Do you offer airport transfers?', a: 'Yes. Please contact our team at least 48 hours before arrival to arrange this service. Rates vary by pick-up location.' },
+  { group: 'Services', q: 'Do you have facilities for children?', a: 'Absolutely! We welcome families. Baby cots and high chairs are available on request. Ask our team about activities for kids during your stay.' },
+  { group: 'Dining', q: 'Is breakfast included in the room rate?', a: 'Breakfast is not automatically included in standard room rates. We offer bed-and-breakfast packages that can be added at the time of booking or upon arrival.' },
+  { group: 'General', q: 'Are pets allowed at the resort?', a: 'We love animals, but for the comfort and safety of all our guests, pets are not permitted within the resort premises. We apologize for any inconvenience.' },
+  { group: 'General', q: 'Is the beach private?', a: 'Yes. Our beachfront is private and exclusive to resort guests, and it is maintained daily for your enjoyment.' },
 ];

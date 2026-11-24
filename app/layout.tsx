@@ -10,7 +10,8 @@ export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: { default: `${site.fullName} | ${site.tagline}`, template: `%s | ${site.name}` },
-  description: `Book beachfront rooms, suites and villas at ${site.fullName}. Private beach, pool, water activities and dining on a quiet bay.`,
+  description: `${site.fullName}, a hidden gem on the shores of Laiya, San Juan, Batangas. Book beachfront rooms, lofts and villas, with a private beach, pool, water activities and dining.`,
+  icons: { icon: site.logo },
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
@@ -23,7 +24,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         {/* eslint-disable-next-line @next/next/no-page-custom-font */}
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Montserrat:wght@400;500;600;700&display=swap"
         />
       </head>
       <body>

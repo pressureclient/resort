@@ -1,39 +1,28 @@
-import { dining, menu } from '@/lib/content';
-import { money } from '@/lib/format';
+import { dining, images } from '@/lib/content';
 import { PageHead, Pic } from '@/components/Bits';
 
-export const metadata = { title: 'Dining and menu' };
+export const metadata = { title: 'Dining & Bar' };
 
 export default function Dining() {
   return (
     <>
-      <PageHead title="Dining" lead="Five places to eat and drink, open to staying guests and day visitors." />
-      <section className="section" style={{ paddingTop: 0 }}>
-        <div className="wrap dine">
+      <PageHead photo={images.dining} title="Dining & Bar" lead="Fresh seafood, Filipino classics and refreshing drinks, from breakfast to late at night." />
+      <section className="section">
+        <div className="wrap">
           {dining.map((d) => (
-            <div className="venue" key={d.name}>
-              <Pic src={d.image} />
-              <div className="t"><span className="kind">{d.kind}</span><h3>{d.name}</h3><p>{d.text}</p><p className="small"><b>{d.hours}</b></p></div>
-            </div>
-          ))}
-        </div>
-      </section>
-      <section className="section mist">
-        <div className="wrap" style={{ maxWidth: 860 }}>
-          <span className="label">Driftwood Grill</span>
-          <h2 className="title" style={{ marginBottom: 32 }}>Menu</h2>
-          {menu.map((s) => (
-            <div className="menu-sec" key={s.section}>
-              <h3 style={{ fontSize: '1.5rem' }}>{s.section}</h3>
-              {s.items.map((i) => (
-                <div className="menu-item" key={i.name}>
-                  <div><b>{i.name}</b><div className="muted small">{i.desc}</div></div>
-                  <span className="p">{money(i.price)}</span>
+            <div className="venue-row" key={d.name}>
+              <Pic src={d.image} label={d.name} />
+              <div>
+                <span className="label">{d.kind}</span>
+                <h2 className="title" style={{ fontSize: '2.2rem' }}>{d.name}</h2>
+                <p className="lead">{d.text}</p>
+                <div className="act-meta">
+                  {d.hours && <span><b>{d.hours}</b></span>}
+                  {d.seats && <span>Seats {d.seats}</span>}
                 </div>
-              ))}
+              </div>
             </div>
           ))}
-          <p className="small muted">Sample menu and prices. Replace with the resort&rsquo;s own.</p>
         </div>
       </section>
     </>

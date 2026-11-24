@@ -4,7 +4,7 @@ import type { Room } from '@/lib/content';
 import { money } from '@/lib/format';
 import { Bed, Info, Ruler, Users, Arrow } from './Icons';
 
-const fallback = 'linear-gradient(135deg, #7fb9bd 0%, #cfe3dc 55%, #f1dcc0 100%)';
+const fallback = 'linear-gradient(135deg, #9fb59f 0%, #dfe4d6 55%, #e8d9bb 100%)';
 
 /** Background photo with a soft sea-to-sand gradient behind it, so nothing looks broken while it loads. */
 export function bg(url: string): CSSProperties {
@@ -22,6 +22,7 @@ export function RoomCard({ room }: { room: Room }) {
         <span className="price-tag">{money(room.price)} <small>/ night</small></span>
       </Link>
       <div className="body">
+        <span className="type">{room.type}</span>
         <h3>{room.name}</h3>
         <div className="specs">
           <span><Users /> Up to {room.capacity}</span>
@@ -49,7 +50,7 @@ export function StaySearch({ checkIn, checkOut, guests, room, inline = false, mi
       <div className="field">
         <label htmlFor="s-g">Guests</label>
         <select id="s-g" name="guests" defaultValue={guests ?? 2}>
-          {[1, 2, 3, 4, 5, 6].map((n) => <option key={n} value={n}>{n} {n === 1 ? 'guest' : 'guests'}</option>)}
+          {Array.from({ length: 25 }, (_, i) => i + 1).map((n) => <option key={n} value={n}>{n} {n === 1 ? 'guest' : 'guests'}</option>)}
         </select>
       </div>
       <button className="btn btn-primary" type="submit">Check availability <Arrow /></button>

@@ -21,8 +21,8 @@ export function addDays(iso: string, days: number) {
 }
 
 export function today() {
-  // Resort local date (West Africa Time). Change the zone if the resort is elsewhere.
-  return new Intl.DateTimeFormat('en-CA', { timeZone: 'Africa/Lagos' }).format(new Date());
+  // Resort local date, so "today" matches the front desk.
+  return new Intl.DateTimeFormat('en-CA', { timeZone: site.timeZone }).format(new Date());
 }
 
 export function nightsBetween(a: string, b: string) {
@@ -42,6 +42,6 @@ export function parseStay(sp: Record<string, string | string[] | undefined>) {
   let checkOut = isIsoDate(sp.out) ? sp.out : addDays(checkIn, 2);
   if (checkOut <= checkIn) checkOut = addDays(checkIn, 1);
   const g = Number(sp.guests);
-  const guests = Number.isInteger(g) && g >= 1 && g <= 12 ? g : 2;
+  const guests = Number.isInteger(g) && g >= 1 && g <= 25 ? g : 2;
   return { checkIn, checkOut, guests, nights: nightsBetween(checkIn, checkOut) };
 }

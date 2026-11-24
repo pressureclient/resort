@@ -1,6 +1,6 @@
-# Marisol Cove Beach Resort
+# La Luz Beach Resort
 
-A beach resort website with a working booking system. Marisol Cove is a placeholder brand: swap the name, photos, rooms and prices to use it for any resort.
+Website and booking system for La Luz Beach Resort, Laiya, San Juan, Batangas. Content, room types, prices and photos come from laluzbeachandresort.com.
 
 **What's in it**
 
@@ -58,7 +58,7 @@ Create an empty repo on the GitHub account you want (no README), then from this 
 ```bash
 git init
 git add .
-git commit -m "Marisol Cove resort site with booking system"
+git commit -m "La Luz Beach Resort site with booking system"
 git branch -M main
 git remote add origin https://github.com/YOUR-USERNAME/marisol-cove.git
 git push -u origin main
@@ -83,9 +83,9 @@ If your Mac is signed in to a different GitHub account, GitHub will ask for that
 
 Room `slug` values must match between `lib/content.ts` and the `rooms` table. Prices on the marketing pages come from `lib/content.ts`, while bookings always use the database price, so update both when rates change.
 
-Photos are hotlinked from Unsplash as placeholders. For a real client, put their photos in `public/` and point the URLs in `lib/content.ts` at them (for example `/rooms/suite-1.jpg`).
+Photos are loaded from La Luz's current site (`laluzbeachandresort.com/storage/...`). **Before the old site is switched off**, download them into `public/` and point the paths in `lib/content.ts` and `lib/site.ts` (logo) at the local copies, or they will stop showing.
 
-The guest reviews, menu prices and map location are samples and are labelled as such. Replace them before launch.
+Room `units` in Supabase are set to 1 per room type until the real counts are confirmed. Set them in Table Editor > rooms so availability is right.
 
 ## How booking works
 
@@ -94,4 +94,4 @@ The guest reviews, menu prices and map location are samples and are labelled as 
 - Bookings start as **pending**. Staff confirm them in `/admin`. Guests can cancel pending or confirmed bookings until the day before arrival.
 - Row level security means guests only ever see their own bookings, and only admins can change a booking status or read enquiries.
 
-Payment is "pay at the resort". To take deposits online, add Paystack or Flutterwave checkout after `create_booking()` and mark the booking confirmed from their webhook.
+Payment is "pay at the resort". To take deposits online, add a Philippine payment gateway (for example PayMongo or Xendit) after `create_booking()` and mark the booking confirmed from its webhook.

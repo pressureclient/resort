@@ -1,22 +1,21 @@
-// Everything brand-specific lives here. Change these to rebrand the whole site.
+// Everything brand-specific lives here.
 export const site = {
-  name: 'Marisol Cove',
-  fullName: 'Marisol Cove Beach Resort',
-  tagline: 'Beachfront stays on a quiet bay',
-  email: 'stay@marisolcove.example',
-  phone: '+234 800 000 0000',
-  address: 'Cove Road, Sample Coast',
-  // Sample location for the map. Replace with the resort's real coordinates.
-  mapQuery: '6.4281,3.4219',
-  currency: 'NGN',
-  locale: 'en-NG',
+  name: 'La Luz',
+  fullName: 'La Luz Beach Resort',
+  tagline: 'No.1 Beach Front in Laiya Batangas',
+  footerLine: 'A beachfront retreat on the shores of Laiya, where the rain forest meets the sea.',
+  email: 'support@laluzbeachandresort.com',
+  phone: '+63 (934) 717 4970',
+  address: 'Laiya-Aplaya San Juan, Batangas, Philippines',
+  mapQuery: 'Laiya-Aplaya San Juan, Batangas, Philippines',
+  directions: 'https://maps.app.goo.gl/dcjVdj98PGh55pGs5',
+  currency: 'PHP',
+  locale: 'en-PH',
+  timeZone: 'Asia/Manila',
   checkIn: '2:00 PM',
   checkOut: '12:00 PM',
-  socials: {
-    instagram: 'https://instagram.com/',
-    facebook: 'https://facebook.com/',
-  },
+  logo: 'https://laluzbeachandresort.com/storage/branding/yeGRrfJEk3FJVdrrj9WHrZuE08UDjUT7Y0Vp05Hv.png',
 };
 
 export const mapEmbed = `https://maps.google.com/maps?q=${encodeURIComponent(site.mapQuery)}&z=14&output=embed`;
-export const mapLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(site.mapQuery)}`;
+export const mapLink = site.directions;

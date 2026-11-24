@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { Logo, Menu } from './Icons';
+import { Menu } from './Icons';
 import { site } from '@/lib/site';
 
 const links = [
@@ -33,7 +33,8 @@ export default function Nav({ signedIn, isAdmin, firstName }: { signedIn: boolea
     <header className={cls}>
       <div className="wrap">
         <Link href="/" className="logo" aria-label={`${site.name} home`}>
-          <Logo /> {site.name}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={site.logo} alt={site.fullName} className="logo-img" />
         </Link>
         <nav className="nav-links" aria-label="Main">
           {links.map((l) => (
