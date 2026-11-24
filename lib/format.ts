@@ -42,6 +42,6 @@ export function parseStay(sp: Record<string, string | string[] | undefined>) {
   let checkOut = isIsoDate(sp.out) ? sp.out : addDays(checkIn, 2);
   if (checkOut <= checkIn) checkOut = addDays(checkIn, 1);
   const g = Number(sp.guests);
-  const guests = Number.isInteger(g) && g >= 1 && g <= 25 ? g : 2;
+  const guests = Number.isInteger(g) && g >= 1 ? Math.min(g, 25) : 2;
   return { checkIn, checkOut, guests, nights: nightsBetween(checkIn, checkOut) };
 }
