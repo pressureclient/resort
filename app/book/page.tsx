@@ -61,7 +61,7 @@ export default async function Book({ searchParams }: { searchParams: SP }) {
                 {left === null ? null : soldOut ? (
                   <span className="left-badge none">Fully booked for these dates</span>
                 ) : (
-                  <span className={`left-badge${left <= 2 ? ' low' : ''}`}>{left <= 2 ? `Only ${left} left` : 'Available'}</span>
+                  <span className={`left-badge${left <= 2 && r.units > left ? ' low' : ''}`}>{left <= 2 && r.units > left ? `Only ${left} left` : 'Available'}</span>
                 )}
               </div>
               <div className="right">
