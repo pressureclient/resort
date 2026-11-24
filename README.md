@@ -83,7 +83,7 @@ If your Mac is signed in to a different GitHub account, GitHub will ask for that
 
 Room `slug` values must match between `lib/content.ts` and the `rooms` table. Prices on the marketing pages come from `lib/content.ts`, while bookings always use the database price, so update both when rates change.
 
-Photos are loaded from La Luz's current site (`laluzbeachandresort.com/storage/...`). **Before the old site is switched off**, download them into `public/` and point the paths in `lib/content.ts` and `lib/site.ts` (logo) at the local copies, or they will stop showing.
+Photos and the logo live in `public/images`, copied from La Luz's old site, so the site does not depend on the old server. To change a photo, replace the file there or add a new one and update its path in `lib/content.ts`.
 
 Room `units` in Supabase are set to 1 per room type until the real counts are confirmed. Set them in Table Editor > rooms so availability is right.
 

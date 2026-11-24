@@ -2,9 +2,8 @@
 // Room slugs, prices and capacity mirror the rooms table in Supabase (supabase/schema.sql).
 // The booking system always uses the database for price and availability.
 
-// Photos are served from La Luz's current site. Before that site is switched off,
-// copy them into /public and point these paths there (see README).
-const S = (path: string) => `https://laluzbeachandresort.com/storage/${path}`;
+// Photos are stored in this project under public/images (copied from the old La Luz site).
+const S = (path: string) => `/images/${path}`;
 const RT = (file: string) => S(`room-types/gallery/${file}`);
 
 export const images = {

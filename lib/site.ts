@@ -14,7 +14,7 @@ export const site = {
   timeZone: 'Asia/Manila',
   checkIn: '2:00 PM',
   checkOut: '12:00 PM',
-  logo: 'https://laluzbeachandresort.com/storage/branding/yeGRrfJEk3FJVdrrj9WHrZuE08UDjUT7Y0Vp05Hv.png',
+  logo: '/images/branding/yeGRrfJEk3FJVdrrj9WHrZuE08UDjUT7Y0Vp05Hv.png',
 };
 
 export const mapEmbed = `https://maps.google.com/maps?q=${encodeURIComponent(site.mapQuery)}&z=14&output=embed`;
