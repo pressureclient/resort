@@ -21,7 +21,8 @@ export default async function Login({ searchParams }: { searchParams: SP }) {
         <h1 style={{ fontSize: '2.6rem' }}>{mode === 'signin' ? 'Welcome back' : 'Create your account'}</h1>
         <p className="muted">{next.startsWith('/book') ? 'Sign in to finish your booking. Your dates are saved.' : 'Manage your bookings in one place.'}</p>
         {!isConfigured && <SetupNotice />}
-        {sp.error === 'confirm' && <p className="msg err">That confirmation link has expired. Sign in or create the account again.</p>}
+        {sp.confirmed === '1' && <p className="msg ok">Your email is confirmed. Sign in to continue.</p>}
+        {sp.error === 'confirm' && <p className="msg err">That confirmation link has expired. Sign in, or create the account again to get a new link.</p>}
         <div className="tabs">
           <Link href={q('signin')} className={mode === 'signin' ? 'on' : ''}>Sign in</Link>
           <Link href={q('signup')} className={mode === 'signup' ? 'on' : ''}>Create account</Link>
