@@ -36,6 +36,8 @@ NEXT_PUBLIC_SITE_URL=http://localhost:3000
 
 5. In Supabase go to **Authentication > URL Configuration**. Set Site URL to your site address and add `http://localhost:3000/**` and `https://YOUR-DOMAIN/**` to Redirect URLs.
 
+Then run `supabase/migrations/002_guest_checkout.sql` the same way. It adds booking without an account, adults and children, booking several rooms at once, weekend rates, the 2% service charge and the room availability calendar.
+
 Restart `npm run dev`. Booking, sign-in and enquiries are now live.
 
 **Testing without email confirmation:** in **Authentication > Providers > Email** you can turn off "Confirm email" while testing. New accounts are then signed in right away.
@@ -91,6 +93,8 @@ Room `units` in Supabase are set to 1 per room type until the real counts are co
 
 - `room_availability()` checks every night of the stay and returns how many units are left on the busiest night.
 - `create_booking()` runs on the server, locks the room type, re-checks availability, and works out the price itself, so nobody can book a full room or change the price from the browser.
+- Guests book in 5 steps (Dates, Room, Info, Review, Pay) **without an account**. Each booking gets a reference and a private link; guests can reopen it under My Bookings with reference + email.
+- Prices are the nightly rate for each night (weekend rate on Friday and Saturday nights where a room has one) times the number of rooms, plus a service charge (2% by default, in the `settings` table).
 - Bookings start as **pending**. Staff confirm them in `/admin`. Guests can cancel pending or confirmed bookings until the day before arrival.
 - Row level security means guests only ever see their own bookings, and only admins can change a booking status or read enquiries.
 

@@ -8,6 +8,16 @@ export function money(n: number) {
   }).format(n);
 }
 
+/** Exact amounts with centavos, e.g. \u20b16,568.80 */
+export function money2(n: number | string) {
+  return new Intl.NumberFormat(site.locale, {
+    style: 'currency',
+    currency: site.currency,
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(Number(n));
+}
+
 const ISO = /^\d{4}-\d{2}-\d{2}$/;
 
 export function isIsoDate(s: unknown): s is string {
@@ -35,13 +45,22 @@ export function prettyDate(iso: string) {
   });
 }
 
-/** Reads ?in=&out=&guests= and falls back to sensible defaults. */
+/** Reads ?in=&out=&adults=&children=&rooms= (and the older ?guests=) with sensible defaults. */
 export function parseStay(sp: Record<string, string | string[] | undefined>) {
   const t = today();
-  let checkIn = isIsoDate(sp.in) && sp.in >= t ? sp.in : addDays(t, 1);
+  const checkIn = isIsoDate(sp.in) && sp.in >= t ? sp.in : addDays(t, 1);
   let checkOut = isIsoDate(sp.out) ? sp.out : addDays(checkIn, 2);
   if (checkOut <= checkIn) checkOut = addDays(checkIn, 1);
-  const g = Number(sp.guests);
-  const guests = Number.isInteger(g) && g >= 1 ? Math.min(g, 25) : 2;
-  return { checkIn, checkOut, guests, nights: nightsBetween(checkIn, checkOut) };
+  const int = (v: unknown, min: number, max: number, dflt: number) => {
+    const n = Number(v);
+    return Number.isInteger(n) && n >= min ? Math.min(n, max) : dflt;
+  };
+  const adults = int(sp.adults ?? sp.guests, 1, 25, 2);
+  const children = int(sp.children, 0, 20, 0);
+  const rooms = int(sp.rooms, 1, 5, 1);
+  return { checkIn, checkOut, adults, children, rooms, guests: adults + children, nights: nightsBetween(checkIn, checkOut) };
+}
+
+export function stayQuery(s: { checkIn: string; checkOut: string; adults: number; children: number; rooms: number }, extra: Record<string, string> = {}) {
+  return new URLSearchParams({ in: s.checkIn, out: s.checkOut, adults: String(s.adults), children: String(s.children), rooms: String(s.rooms), ...extra }).toString();
 }

@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation';
 import { roomAmenities, rooms } from '@/lib/content';
 import { addDays, money, today } from '@/lib/format';
 import { Pic, RoomCard, StaySearch } from '@/components/Bits';
+import AvailabilityCalendar from '@/components/AvailabilityCalendar';
+import { isConfigured, supabaseServer } from '@/lib/supabase/server';
 import { Bed, Check, Ruler, Users } from '@/components/Icons';
 
 type Props = { params: Promise<{ slug: string }> };
@@ -22,6 +24,15 @@ export default async function RoomPage({ params }: Props) {
   const room = rooms.find((r) => r.slug === slug);
   if (!room) notFound();
   const t = today();
+  let full: string[] = [];
+  if (isConfigured) {
+    const sb = await supabaseServer();
+    const { data: r } = await sb.from('rooms').select('id').eq('slug', slug).maybeSingle();
+    if (r) {
+      const { data: f } = await sb.rpc('room_full_dates', { p_room_id: r.id, p_from: t, p_to: addDays(t, 62) });
+      full = ((f as string[] | null) ?? []).map(String);
+    }
+  }
   const others = rooms.filter((r) => r.slug !== slug).slice(0, 3);
 
   return (
@@ -50,13 +61,16 @@ export default async function RoomPage({ params }: Props) {
               <ul className="amenities">
                 {roomAmenities.map((a) => <li key={a}><Check /> {a}</li>)}
               </ul>
+              <h3 style={{ fontSize: '1.3rem', marginTop: 32 }}>Availability</h3>
+              <p className="muted small">Crossed-out dates are fully booked.</p>
+              <AvailabilityCalendar today={t} full={full} />
             </div>
             <aside className="panel sticky">
               <p className="label" style={{ marginBottom: 4 }}>Starting from</p>
               <p style={{ margin: 0 }}><span style={{ fontFamily: 'var(--display)', fontSize: '2rem' }}>{money(room.price)}</span> <span className="muted">/ night</span></p>
               <p className="muted small">{room.weekendPrice ? `${money(room.weekendPrice)} on weekends. ` : ''}Pay at the resort.</p>
               <div style={{ display: 'grid', gap: 12 }}>
-                <StaySearch inline room={room.slug} min={t} checkIn={addDays(t, 1)} checkOut={addDays(t, 3)} guests={Math.min(2, room.capacity)} />
+                <StaySearch inline room={room.slug} min={t} checkIn={addDays(t, 1)} checkOut={addDays(t, 3)} adults={Math.min(2, room.capacity)} />
               </div>
             </aside>
           </div>

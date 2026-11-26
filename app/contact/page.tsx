@@ -20,7 +20,7 @@ export default function Contact() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
             <div className="panel">
               <p style={{ margin: 0 }}><b>Email</b><br /><a className="link" href={`mailto:${site.email}`}>{site.email}</a></p>
-              <p style={{ margin: '14px 0 0' }}><b>Phone</b><br /><a className="link" href={`tel:${site.phone.replace(/\s/g, '')}`}>{site.phone}</a></p>
+              <p style={{ margin: '14px 0 0' }}><b>Phone</b><br /><a className="link" href={`tel:${site.phone.replace(/[^+\d]/g, '')}`}>{site.phone}</a></p>
               <p style={{ margin: '14px 0 0' }}><b>Address</b><br />{site.address} · <a className="link" href={mapLink} target="_blank" rel="noreferrer">Directions</a></p>
             </div>
             <iframe className="map" src={mapEmbed} title="Map to the resort" loading="lazy" style={{ flex: 1 }} />

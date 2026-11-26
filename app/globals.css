@@ -354,7 +354,7 @@ h1, h2, h3, h4 { font-family: var(--display); font-weight: 500; color: var(--dar
 @media (max-width: 640px) { .bk { grid-template-columns: 1fr; } }
 
 /* Admin */
-.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 32px; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; margin-bottom: 32px; }
 .stat { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; }
 .stat span { font-size: 0.85rem; color: var(--muted); }
 .stat b { display: block; font-family: var(--display); font-size: 2rem; font-weight: 500; margin-top: 4px; }
@@ -432,3 +432,41 @@ html, body { overflow-x: clip; }
 @media (max-width: 760px) { .venue-row { grid-template-columns: 1fr; gap: 18px; } }
 @media (max-width: 1000px) { .acts.five { grid-template-columns: repeat(3, 1fr); } }
 .hero-bg { animation: none; }
+
+/* ---------- 5-step booking ---------- */
+.search.wide { grid-template-columns: 1fr 1fr 0.55fr 0.55fr 0.7fr auto; }
+@media (max-width: 1000px) { .search.wide { grid-template-columns: 1fr 1fr 1fr; } .search.wide .btn { grid-column: 1 / -1; } }
+@media (max-width: 520px) { .search.wide { grid-template-columns: 1fr 1fr; } }
+.steps5 { list-style: none; padding: 0; margin: 0 0 32px; display: grid; grid-template-columns: repeat(5, 1fr); position: relative; }
+.steps5::before { content: ''; position: absolute; left: 10%; right: 10%; top: 17px; height: 1px; background: var(--line); }
+.steps5 li { display: grid; justify-items: center; gap: 6px; position: relative; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.steps5 .dot { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: var(--paper); border: 1px solid var(--line); font-size: 0.85rem; }
+.steps5 li.on .dot, .steps5 li.done .dot { background: var(--sea); border-color: var(--sea); color: #fff; }
+.steps5 li.on { color: var(--dark); }
+@media (max-width: 520px) { .steps5 .nm { font-size: 0.62rem; letter-spacing: 0.04em; } }
+.price-lines { display: grid; gap: 2px; justify-items: end; }
+.wizard-actions { display: flex; justify-content: space-between; gap: 12px; margin-top: 20px; flex-wrap: wrap; }
+.review-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 24px; }
+@media (max-width: 640px) { .review-grid { grid-template-columns: 1fr; } }
+.pay-option { display: flex; gap: 14px; align-items: flex-start; padding: 16px; border: 1px solid var(--line); background: var(--paper); cursor: pointer; }
+.pay-option.on { border-color: var(--sea); box-shadow: 0 0 0 3px rgba(62, 123, 79, 0.12); }
+.pay-option input { margin-top: 4px; accent-color: var(--sea); }
+.check { display: flex; gap: 10px; align-items: flex-start; font-size: 0.9rem; }
+.check input { margin-top: 3px; accent-color: var(--sea); }
+.ref-box { display: inline-block; font-family: var(--display); font-size: 2rem; letter-spacing: 0.08em; padding: 6px 18px; border: 1px dashed var(--sun); background: #fffaf1; }
+/* Availability calendar on room pages */
+.cal-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+@media (max-width: 640px) { .cal-wrap { grid-template-columns: 1fr; } }
+.cal-title { font-family: var(--display); font-size: 1.1rem; margin-bottom: 8px; }
+.cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; text-align: center; }
+.cal-dow { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; padding: 4px 0; }
+.cal-day { padding: 7px 0; font-size: 0.85rem; background: var(--paper); border: 1px solid var(--line); }
+.cal-day.past { color: #b5b9b4; background: transparent; }
+.cal-day.full { text-decoration: line-through; color: #a5493c; background: #fbecea; border-color: #f1cfc9; }
+.footer .news-row { display: grid; grid-template-columns: 1fr minmax(0, 420px); gap: 24px; align-items: center; border-top: 1px solid rgba(255, 255, 255, 0.12); margin-top: 40px; padding-top: 32px; }
+.footer .news-row .news { margin-top: 0; }
+@media (max-width: 720px) { .footer .news-row { grid-template-columns: 1fr; } }
+.panel .search.wide { grid-template-columns: 1fr 1fr; }
+.panel .search.wide > .field:nth-last-child(2) { grid-column: 1 / -1; }
+.footer .news input { border-radius: 0; }
+.pay-details { white-space: pre-wrap; font: 500 1rem var(--body); background: #f7f5ee; border: 1px dashed var(--sun); padding: 14px 16px; margin: 0 0 12px; }

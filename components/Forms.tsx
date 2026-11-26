@@ -2,7 +2,7 @@
 
 import { useActionState } from 'react';
 import { useFormStatus } from 'react-dom';
-import { sendEnquiry, subscribe, signIn, signUp, createBooking, type FormState } from '@/lib/actions';
+import { sendEnquiry, subscribe, signIn, signUp, findBooking, uploadReceipt, type FormState } from '@/lib/actions';
 
 export function Submit({ children, className = 'btn btn-primary' }: { children: React.ReactNode; className?: string }) {
   const { pending } = useFormStatus();
@@ -79,22 +79,32 @@ export function AuthForm({ mode, next }: { mode: 'signin' | 'signup'; next: stri
   );
 }
 
-export function BookingForm(props: { roomId: number; checkIn: string; checkOut: string; guests: number; defaultName: string }) {
-  const [state, action] = useActionState(createBooking, undefined);
+export function FindBookingForm() {
+  const [state, action] = useActionState(findBooking, undefined);
   return (
     <form action={action} className="form">
-      <input type="hidden" name="room_id" value={props.roomId} />
-      <input type="hidden" name="in" value={props.checkIn} />
-      <input type="hidden" name="out" value={props.checkOut} />
-      <input type="hidden" name="guests" value={props.guests} />
       <div className="row">
-        <div className="field"><label htmlFor="b-name">Name on booking</label><input id="b-name" name="name" required defaultValue={props.defaultName} autoComplete="name" /></div>
-        <div className="field"><label htmlFor="b-phone">Phone</label><input id="b-phone" name="phone" type="tel" autoComplete="tel" placeholder="For arrival updates" /></div>
+        <div className="field"><label htmlFor="f-ref">Booking reference</label><input id="f-ref" name="ref" required placeholder="e.g. 61A7DEEB" autoCapitalize="characters" /></div>
+        <div className="field"><label htmlFor="f-email">Email used to book</label><input id="f-email" name="email" type="email" required autoComplete="email" /></div>
       </div>
-      <div className="field"><label htmlFor="b-notes">Requests</label><textarea id="b-notes" name="notes" placeholder="Arrival time, celebrations, dietary needs" /></div>
       <Msg state={state} />
-      <Submit>Confirm booking</Submit>
-      <p className="small muted" style={{ margin: 0 }}>Pay at the resort. Our team confirms your booking shortly after you submit it.</p>
+      <Submit>Find my booking</Submit>
+    </form>
+  );
+}
+
+export function ReceiptForm({ bookingRef, token }: { bookingRef: string; token: string }) {
+  const [state, action] = useActionState(uploadReceipt, undefined);
+  return (
+    <form action={action} className="form">
+      <input type="hidden" name="ref" value={bookingRef} />
+      <input type="hidden" name="token" value={token} />
+      <div className="field">
+        <label htmlFor="r-file">Upload your receipt (photo, screenshot or PDF, max 5 MB)</label>
+        <input id="r-file" name="receipt" type="file" accept="image/jpeg,image/png,image/webp,image/heic,application/pdf" required style={{ paddingTop: 10 }} />
+      </div>
+      <Msg state={state} />
+      <Submit>Upload receipt</Submit>
     </form>
   );
 }

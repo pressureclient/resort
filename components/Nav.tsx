@@ -7,10 +7,10 @@ import { Menu } from './Icons';
 import { site } from '@/lib/site';
 
 const links = [
+  { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
   { href: '/rooms', label: 'Rooms' },
   { href: '/activities', label: 'Activities' },
-  { href: '/dining', label: 'Dining' },
   { href: '/gallery', label: 'Gallery' },
   { href: '/contact', label: 'Contact' },
 ];
@@ -44,7 +44,7 @@ export default function Nav({ signedIn, isAdmin, firstName }: { signedIn: boolea
         <div className="nav-actions">
           {isAdmin && <Link href="/admin" className="nav-user hide-md">Admin</Link>}
           {signedIn ? (
-            <Link href="/account" className="nav-user hide-sm">{firstName ? `Hi, ${firstName}` : 'My bookings'}</Link>
+            <Link href="/account" className="nav-user hide-sm">{firstName ? `Hi, ${firstName}` : 'My Bookings'}</Link>
           ) : (
             <Link href="/login" className="nav-user hide-sm">Sign in</Link>
           )}
@@ -55,8 +55,10 @@ export default function Nav({ signedIn, isAdmin, firstName }: { signedIn: boolea
               {links.map((l) => (
                 <Link key={l.href} href={l.href}>{l.label}</Link>
               ))}
+              <Link href="/dining">Dining</Link>
               <Link href="/faq">FAQ</Link>
-              {signedIn ? <Link href="/account">My bookings</Link> : <Link href="/login">Sign in</Link>}
+              <Link href="/account">My Bookings</Link>
+              {!signedIn && <Link href="/login">Sign in</Link>}
               {isAdmin && <Link href="/admin">Admin</Link>}
               {signedIn && (
                 <form action="/auth/signout" method="post"><button type="submit">Sign out</button></form>
