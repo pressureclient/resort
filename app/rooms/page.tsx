@@ -8,7 +8,7 @@ export default function Rooms() {
   const t = today();
   return (
     <>
-      <PageHead photo={images.rooms} title="Our Accommodations" lead="Rooms, lofts, dormitories and a private villa, from couples to groups of 25. Prices are per night." />
+      <PageHead photo={images.rooms} title="Our Accommodations" lead="Rooms, lofts, dormitories and private pool villas, from couples to groups of 45. Prices are per night, already 50% off, with breakfast, lunch and dinner included." />
       <section className="section">
         <div className="wrap">
           <div style={{ marginBottom: 32 }}><StaySearch inline min={t} checkIn={addDays(t, 1)} checkOut={addDays(t, 3)} /></div>

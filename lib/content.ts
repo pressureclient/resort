@@ -31,7 +31,8 @@ export type Room = {
   weekendPrice?: number;
   capacity: number;
   beds: string;
-  size: number;
+  size?: number;
+  photosPending?: boolean;
   summary: string;
   description: string;
   featured?: boolean;
@@ -56,31 +57,31 @@ export const rooms: Room[] = [
     images: [RT('nnWxpbZFjrTATCeTX0OpATTYJnMBcXSBUIlAWl9H.webp'), RT('bLLjp9AXWsozSeyWWIeDAEn4qIZcIixr12sO8i4Z.webp')],
   },
   {
-    slug: 'family-suite', type: 'Deluxe', name: 'Annex Deluxe', price: 5340, capacity: 4, beds: '2 king bed size', size: 24, featured: true,
-    summary: 'A deluxe annex room with 2 king beds size for up to 4 guests.',
-    description: 'A deluxe annex room with 2 king beds for up to 4 guests. Upgraded from the standard annex with better finishes and more comfortable amenities.',
+    slug: 'family-suite', type: 'Deluxe', name: 'Annex Deluxe', price: 5500, capacity: 3, beds: '2 king bed size', size: 24, featured: true,
+    summary: 'A deluxe annex room with 2 king beds size, good for 2 to 3 guests.',
+    description: 'A deluxe annex room with 2 king beds, good for 2 to 3 guests. Upgraded from the standard annex with better finishes and more comfortable amenities.',
     images: [RT('OGVyD8Li2jl47ZdFHIwVUABHMnXSCZe05etXM97G.webp'), RT('XZphdQ9KoPXxqC6Cw5wZdvn5EAlqOtAAercykvM0.webp')],
   },
   {
-    slug: 'beachfront-villa', type: 'Deluxe', name: 'Premier Deluxe', price: 6150, capacity: 5, beds: '2 king bed size and 1 single bed', size: 45,
-    summary: 'A deluxe premier room for up to 5 guests featuring 2 king bed size and 1 single bed.',
-    description: 'A deluxe premier room for up to 5 guests featuring 2 king beds and 1 single bed. Upgraded amenities and finishes make this one of the most comfortable rooms in the resort.',
+    slug: 'beachfront-villa', type: 'Deluxe', name: 'Premier Deluxe', price: 6500, capacity: 5, beds: '2 king bed size and 1 single bed', size: 45,
+    summary: 'A deluxe premier room for 4 to 5 guests featuring 2 king bed size and 1 single bed.',
+    description: 'A deluxe premier room for 4 to 5 guests featuring 2 king beds and 1 single bed. Upgraded amenities and finishes make this one of the most comfortable rooms in the resort.',
     images: [RT('tllFzUcoMApYNZu5hHWpsLc54JHg1n2v1Qoogaf6.webp'), RT('A7tUNdMqUKP7rNlK9f5WAwqTUDhtucpaQvPptVs3.webp')],
   },
   {
-    slug: 'presidential-suite', type: 'Dormitory', name: 'Annex Dorm', price: 7150, capacity: 6, beds: '3 king beds', size: 50,
-    summary: 'A dormitory-style annex room with 3 king beds for up to 6 guests.',
-    description: 'A dormitory-style annex room with 3 king beds for up to 6 guests. A good fit for families and barkada trips who want to stay together.',
+    slug: 'presidential-suite', type: 'Dormitory', name: 'Annex Dorm', price: 8000, capacity: 6, beds: '3 king beds', size: 50,
+    summary: 'A dormitory-style annex room with 3 king beds for 5 to 6 guests.',
+    description: 'A dormitory-style annex room with 3 king beds for 5 to 6 guests. A good fit for families and barkada trips who want to stay together.',
     images: [RT('nYpx2yMU91iidyi3tGySBm4BvRbI8PFRfYdVcta4.webp'), RT('MZx5eyvQkzb9dal2Tu6jAtSIMvn4v5imVcwS0Sdj.webp')],
   },
   {
-    slug: 'annex-loft-room', type: 'Loft', name: 'Annex Loft Room', price: 8340, weekendPrice: 8349, capacity: 8, beds: '4 king beds', size: 65,
-    summary: 'A two-level annex loft room that fits up to 7-8 guests comfortably.',
-    description: 'A two-level annex loft room that fits up to 7-8 guests comfortably. Features 4 king beds spread across both levels. Great for barkada trips and family reunions.',
+    slug: 'annex-loft-room', type: 'Loft', name: 'Annex Loft Room', price: 10000, capacity: 8, beds: '4 king beds', size: 65,
+    summary: 'A two-level annex loft room, good for 8 guests.',
+    description: 'A two-level annex loft room, good for 8 guests. Features 4 king beds spread across both levels. Great for barkada trips and family reunions.',
     images: [RT('eSNP5ZDXStVaVlLwfUpAZWicjcFzhR58G0LDnZPe.webp'), RT('9KRre2ZKUKaLdLCfgWhBO6qowOx17ueAIYZLqFz1.webp'), RT('sNbMrrtBDm6M2ph5mgOfPgAJdOAaGnuMTsTJg5tb.webp')],
   },
   {
-    slug: 'premier-loft-room', type: 'Loft', name: 'Premier Loft Room', price: 10350, capacity: 12, beds: '6 king sized beds', size: 75,
+    slug: 'premier-loft-room', type: 'Loft', name: 'Premier Loft Room', price: 12000, capacity: 12, beds: '6 king sized beds', size: 75,
     summary: 'A spacious loft room ideal for families or groups of up to 10-12.',
     description: 'A spacious loft room ideal for families or groups of up to 10-12. Features 6 king sized beds across two levels. Perfect for a fun group getaway by the beach.',
     images: [RT('ijPf9Ja6U2kbnFe4ury2AJw6PeyPmfiQ7qanQvfh.webp'), RT('z8fcji8wYd2OP3awWr6sZJU2kvwsMLtHmDHj68V0.webp'), RT('VID0It2SpLIwcIYSJztz0vgJk0FqMnG1vOzRoM8W.webp')],
@@ -92,10 +93,22 @@ export const rooms: Room[] = [
     images: [RT('Jsfxk9Mlp2m9X7kUJqveWKzpDOtWZysu6J97aNKQ.webp'), RT('5S2ZyAjCtvFaBr9rSGOth0SSkezHNcX6I0LZ0PLT.webp'), RT('EQw7mRRscOKr3iyIsfJNODntWDsOgrinS8gyGMCZ.webp'), RT('a5V3dmbhFUd7MWQPrC3HDcvnqtKwyYuLPHqRbJdJ.webp'), RT('7GxUFkpFjqluzm3O5390sfbXIXJCkXihMrsPrGAg.webp')],
   },
   {
-    slug: 'la-luz-luxury-5br-private-villa', type: 'Villa', name: 'La Luz Luxury 5BR Private Villa', price: 15270, capacity: 25, beds: '5 bedrooms', size: 250,
-    summary: 'An expansive 5-bedroom luxury villa ideal for large groups and special events.',
-    description: 'An expansive 5-bedroom luxury villa ideal for large groups and special events. Features premium furnishings, multiple bedrooms, a full kitchen, and exclusive resort amenities.',
+    slug: 'luxury-pool-villa-3br', type: 'Villa', name: 'Luxury Pool Villa 3BR', price: 17500, capacity: 17, beds: '3 bedrooms', photosPending: true,
+    summary: 'A 3-bedroom luxury pool villa, good for 15 to 17 guests.',
+    description: 'A 3-bedroom luxury villa with a private pool, good for 15 to 17 guests. A great fit for big families and group getaways.',
+    images: [images.pool, images.rooms],
+  },
+  {
+    slug: 'la-luz-luxury-5br-private-villa', type: 'Villa', name: 'La Luz Luxury 5BR Private Villa', price: 25000, capacity: 25, beds: '5 bedrooms', size: 250,
+    summary: 'A 5-bedroom luxury villa with a kitchen and private pool, good for 20 to 25 guests.',
+    description: 'A 5-bedroom luxury villa with its own kitchen and private pool, good for 20 to 25 guests. Ideal for large groups and special events, with premium furnishings and exclusive resort amenities.',
     images: [RT('7R4K4CBM3VfaJ8pU7xUjGbpD8i1BrjIrKAdpm8wu.webp'), RT('y9ryvkqPliS7NCpY4rrSreAnF6M3OmnwZVtJZANP.webp'), RT('9qe5EzHMpqY85gDruiwVFJaUyq6h2zCfoOuwwHjR.webp'), RT('WkhpByLPxyiZzUhzZ1PrJ1hTgxiyCBJHCFySnrLZ.webp'), RT('O5IrHU5cFlsMsOSQhrnoTjbQpM4nCvVgFdA1a6IE.webp')],
+  },
+  {
+    slug: 'luxury-pool-villa-7br', type: 'Villa', name: 'Luxury Pool Villa 7BR', price: 36000, capacity: 45, beds: '7 bedrooms', photosPending: true,
+    summary: 'A 7-bedroom luxury pool villa, good for 30 to 45 guests.',
+    description: 'A 7-bedroom luxury villa with a private pool, good for 30 to 45 guests. Built for company outings, reunions and celebrations.',
+    images: [images.pool, images.rooms],
   },
 ];
 
@@ -207,7 +220,7 @@ export const faqs = [
   { group: 'Booking', q: 'How do I make a group or event booking?', a: 'For group bookings of 5 rooms or more, corporate events, weddings or private functions, please email support@laluzbeachandresort.com or call +63 (934) 717 4970. We offer tailored packages and special group rates.' },
   { group: 'Services', q: 'Do you offer airport transfers?', a: 'Yes. Please contact our team at least 48 hours before arrival to arrange this service. Rates vary by pick-up location.' },
   { group: 'Services', q: 'Do you have facilities for children?', a: 'Absolutely! We welcome families. Baby cots and high chairs are available on request. Ask our team about activities for kids during your stay.' },
-  { group: 'Dining', q: 'Is breakfast included in the room rate?', a: 'Breakfast is not automatically included in standard room rates. We offer bed-and-breakfast packages that can be added at the time of booking or upon arrival.' },
+  { group: 'Dining', q: 'Is breakfast included in the room rate?', a: 'Yes. Our current room rates are already 50% off and include breakfast, lunch and dinner.' },
   { group: 'General', q: 'Are pets allowed at the resort?', a: 'We love animals, but for the comfort and safety of all our guests, pets are not permitted within the resort premises. We apologize for any inconvenience.' },
   { group: 'General', q: 'Is the beach private?', a: 'Yes. Our beachfront is private and exclusive to resort guests, and it is maintained daily for your enjoyment.' },
 ];

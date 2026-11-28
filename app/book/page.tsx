@@ -78,6 +78,7 @@ export default async function Book({ searchParams }: { searchParams: SP }) {
                     <span className="total">{money2(r.total)}</span>
                     <span className="muted small">{money2(r.subtotal / (stay.nights * stay.rooms))} / night{stay.rooms > 1 ? ' per room' : ''}</span>
                     <span className="muted small">incl. VAT &amp; service charge</span>
+                    <span className="muted small">Breakfast, lunch &amp; dinner included</span>
                     {soldOut ? (
                       <span className="btn btn-ghost btn-sm" aria-disabled>Unavailable</span>
                     ) : (

@@ -60,7 +60,7 @@ export default async function Admin({ searchParams }: { searchParams: SP }) {
 
   const stats = [
     { k: 'Waiting for you', v: String(live.filter((b) => b.status === 'pending').length) },
-    { k: 'Receipts to check', v: String(rows.filter((b) => b.payment_status === 'receipt_uploaded').length) },
+    { k: 'Receipts to check', v: String(rows.filter((b) => b.payment_status === 'receipt_uploaded' && b.status !== 'cancelled').length) },
     { k: 'Arriving today', v: String(active.filter((b) => b.check_in === t).length) },
     { k: 'Guests in house', v: String(active.filter((b) => b.check_in <= t && b.check_out > t).length) },
     { k: 'Upcoming confirmed value', v: money(live.filter((b) => b.status === 'confirmed').reduce((s, b) => s + Number(b.total), 0)) },

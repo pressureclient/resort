@@ -6,6 +6,7 @@ import { Pic, RoomCard, StaySearch } from '@/components/Bits';
 import AvailabilityCalendar from '@/components/AvailabilityCalendar';
 import { isConfigured, supabaseServer } from '@/lib/supabase/server';
 import { Bed, Check, Ruler, Users } from '@/components/Icons';
+import { site } from '@/lib/site';
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -44,7 +45,7 @@ export default async function RoomPage({ params }: Props) {
           <div className="specs" style={{ fontSize: '0.95rem' }}>
             <span><Users /> Up to {room.capacity} guests</span>
             <span><Bed /> {room.beds}</span>
-            <span><Ruler /> {room.size} m²</span>
+            {room.size && <span><Ruler /> {room.size} m²</span>}
           </div>
         </div>
       </section>
@@ -53,6 +54,7 @@ export default async function RoomPage({ params }: Props) {
           <div className={`room-gallery${room.images.length === 2 ? ' n2' : ''}`}>
             {room.images.slice(0, 3).map((src, i) => <Pic key={i} src={src} label={`${room.name} photo ${i + 1}`} />)}
           </div>
+          {room.photosPending && <p className="muted small" style={{ marginTop: 10 }}>Photos of this villa are coming soon. The pictures above show the resort.</p>}
           <div className="room-detail">
             <div>
               <h2 style={{ fontSize: '1.8rem' }}>About this room</h2>
@@ -68,7 +70,7 @@ export default async function RoomPage({ params }: Props) {
             <aside className="panel sticky">
               <p className="label" style={{ marginBottom: 4 }}>Starting from</p>
               <p style={{ margin: 0 }}><span style={{ fontFamily: 'var(--display)', fontSize: '2rem' }}>{money(room.price)}</span> <span className="muted">/ night</span></p>
-              <p className="muted small">{room.weekendPrice ? `${money(room.weekendPrice)} on weekends. ` : ''}Pay at the resort.</p>
+              <p className="muted small">{room.weekendPrice ? `${money(room.weekendPrice)} on weekends. ` : ''}{site.rateNote}</p>
               <div style={{ display: 'grid', gap: 12 }}>
                 <StaySearch inline room={room.slug} min={t} checkIn={addDays(t, 1)} checkOut={addDays(t, 3)} adults={Math.min(2, room.capacity)} />
               </div>

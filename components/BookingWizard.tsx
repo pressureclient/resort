@@ -20,6 +20,7 @@ type Props = {
 };
 
 const POLICIES = [
+  'Breakfast, lunch and dinner included',
   `Check-in: ${site.checkIn} onwards`,
   `Check-out: ${site.checkOut} noon`,
   'No smoking in rooms',

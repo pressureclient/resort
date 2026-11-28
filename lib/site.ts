@@ -14,6 +14,7 @@ export const site = {
   timeZone: 'Asia/Manila',
   checkIn: '2:00 PM',
   checkOut: '12:00 PM',
+  rateNote: 'Rates are already 50% off and include breakfast, lunch and dinner.',
   logo: '/images/branding/yeGRrfJEk3FJVdrrj9WHrZuE08UDjUT7Y0Vp05Hv.png',
 };
 

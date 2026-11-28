@@ -55,7 +55,7 @@ export function parseStay(sp: Record<string, string | string[] | undefined>) {
     const n = Number(v);
     return Number.isInteger(n) && n >= min ? Math.min(n, max) : dflt;
   };
-  const adults = int(sp.adults ?? sp.guests, 1, 25, 2);
+  const adults = int(sp.adults ?? sp.guests, 1, 45, 2);
   const children = int(sp.children, 0, 20, 0);
   const rooms = int(sp.rooms, 1, 5, 1);
   return { checkIn, checkOut, adults, children, rooms, guests: adults + children, nights: nightsBetween(checkIn, checkOut) };

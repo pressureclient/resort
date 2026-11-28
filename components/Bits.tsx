@@ -27,7 +27,7 @@ export function RoomCard({ room }: { room: Room }) {
         <div className="specs">
           <span><Users /> Up to {room.capacity}</span>
           <span><Bed /> {room.beds}</span>
-          <span><Ruler /> {room.size} m²</span>
+          {room.size && <span><Ruler /> {room.size} m²</span>}
         </div>
         <p className="muted small">{room.summary}</p>
         <div className="actions">
@@ -50,7 +50,7 @@ export function StaySearch({ checkIn, checkOut, adults = 2, children = 0, rooms 
       <div className="field"><label htmlFor="s-out">Check-out</label><input id="s-out" name="out" type="date" min={min} defaultValue={checkOut} required /></div>
       <div className="field">
         <label htmlFor="s-a">Adults</label>
-        <select id="s-a" name="adults" defaultValue={adults}>{range(1, 25).map((n) => <option key={n} value={n}>{n}</option>)}</select>
+        <select id="s-a" name="adults" defaultValue={adults}>{range(1, 45).map((n) => <option key={n} value={n}>{n}</option>)}</select>
       </div>
       <div className="field">
         <label htmlFor="s-c">Children</label>
