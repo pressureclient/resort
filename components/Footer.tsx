@@ -31,7 +31,6 @@ export default function Footer() {
             <ul>
               <li><Link href="/faq">FAQ</Link></li>
               <li><Link href="/account">My Bookings</Link></li>
-              <li><Link href="/login">Sign In</Link></li>
             </ul>
           </div>
           <div>

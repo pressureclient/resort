@@ -26,9 +26,6 @@ export default async function Account() {
           <h1 style={{ fontSize: 'clamp(2rem,4vw,3rem)' }}>My Bookings</h1>
           <p className="lead">Find your booking with the reference from your confirmation and the email you booked with. No account needed.</p>
           <div className="panel"><FindBookingForm /></div>
-          <p className="muted small" style={{ marginTop: 18 }}>
-            Have an account? <Link className="link" href="/login?next=/account">Sign in</Link> to see all bookings made with your email.
-          </p>
         </div>
       </section>
     );

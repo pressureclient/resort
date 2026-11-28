@@ -43,11 +43,7 @@ export default function Nav({ signedIn, isAdmin, firstName }: { signedIn: boolea
         </nav>
         <div className="nav-actions">
           {isAdmin && <Link href="/admin" className="nav-user hide-md">Admin</Link>}
-          {signedIn ? (
-            <Link href="/account" className="nav-user hide-sm">{firstName ? `Hi, ${firstName}` : 'My Bookings'}</Link>
-          ) : (
-            <Link href="/login" className="nav-user hide-sm">Sign in</Link>
-          )}
+          {signedIn && <Link href="/account" className="nav-user hide-sm">{firstName ? `Hi, ${firstName}` : 'My Bookings'}</Link>}
           <Link href="/book" className="btn btn-primary btn-sm">Book now</Link>
           <details className="mobile-menu" key={path}>
             <summary aria-label="Open menu"><Menu /></summary>
@@ -58,7 +54,6 @@ export default function Nav({ signedIn, isAdmin, firstName }: { signedIn: boolea
               <Link href="/dining">Dining</Link>
               <Link href="/faq">FAQ</Link>
               <Link href="/account">My Bookings</Link>
-              {!signedIn && <Link href="/login">Sign in</Link>}
               {isAdmin && <Link href="/admin">Admin</Link>}
               {signedIn && (
                 <form action="/auth/signout" method="post"><button type="submit">Sign out</button></form>

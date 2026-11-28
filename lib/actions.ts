@@ -35,6 +35,8 @@ export async function signIn(_: FormState, fd: FormData): Promise<FormState> {
 
 export async function signUp(_: FormState, fd: FormData): Promise<FormState> {
   if (!isConfigured) return notReady;
+  // Public sign-up is closed: guests book without an account. Staff accounts are added in Supabase.
+  if (process.env.ALLOW_SIGNUP !== 'true') return { error: 'Sign-up is closed. Guests can book without an account.' };
   const name = str(fd, 'name');
   const password = str(fd, 'password');
   if (name.length < 2) return { error: 'Please enter your full name.' };
